@@ -21,4 +21,4 @@ exports.updateUser = async (req, res) => {
         console.error(error);
         res.status(404).json({ message:'Usuário não encontrado ou erro ao atualizar'})
     }
-};
+}

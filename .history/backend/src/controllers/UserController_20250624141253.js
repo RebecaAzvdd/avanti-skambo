@@ -13,12 +13,8 @@ exports.updateUser = async (req, res) => {
             }
         });
 
-        res.json({
-            message: 'Usuário atualizado com sucesso',
-            user: updateUser
-        });
+        
     } catch (error) {
-        console.error(error);
-        res.status(404).json({ message:'Usuário não encontrado ou erro ao atualizar'})
+        
     }
-};
+}

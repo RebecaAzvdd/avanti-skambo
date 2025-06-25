@@ -4,8 +4,6 @@ const Usercontroller = ('../controllers/UserController');
 
 router.put('/id', Usercontroller.updateUser);
 router.post('/', Usercontroller.createUser);
-router.get('/', Usercontroller.getAllUser);
+router.get('/id', Usercontroller.getAllUser);
 router.get('/id', Usercontroller.getUserById);
 router.delete('/id', Usercontroller.deleteUser);
-
-module.exports = router;
