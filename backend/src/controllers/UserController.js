@@ -1,13 +1,13 @@
-import { prismaClient } from "../config/PrismaClient";
+import { prismaClient } from "../config/PrismaClient.js";
 
 export class UserController {
     async updateUser (req, res)  {
-    const {userId} = req.params;
+    const {id} = req.params;
     const {nome, email} = req.body;
 
     try {
         const updateUser = await prismaClient.user.update({
-            where: { id: userId },
+            where: { id: id },
             data: {
                 nome,
                 email
@@ -24,3 +24,4 @@ export class UserController {
     }
 } 
 };
+
