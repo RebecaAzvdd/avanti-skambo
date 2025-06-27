@@ -1,4 +1,4 @@
-import { prismaClient } from "../config/PrismaClient";
+import { prismaClient } from "../config/PrismaClient.js";
 
 export class ItensController {
   async getAllItensAvailable(req, res) {
@@ -11,7 +11,7 @@ export class ItensController {
           userResponsavel: {
             select: {
               id: true,
-              name: true,
+              nome: true,
               email: true,
             },
           },
@@ -41,7 +41,7 @@ export class ItensController {
           userResponsavel: {
             select: {
               id: true,
-              name: true,
+              nome: true,
               email: true,
             },
           },
@@ -56,7 +56,7 @@ export class ItensController {
   }
 
   async getItensByKeyWord(req, res) {
-    const { palavra } = req.body;
+    const { palavra } = req.query;
 
     try {
       const itens = await prismaClient.item.findMany({
