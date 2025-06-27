@@ -74,5 +74,55 @@ export class UserController {
             res.status(404).json({message: 'Usuario não encontrado ou erro ao deletar'});
         }
     }
+
+    // Função para listar todos os usuários (com seleção de campos por segurança)
+    static async listarTodos(req, res) {
+        try {
+            const users = await prisma.user.findMany({
+                // Seleciona apenas os campos seguros para serem retornados
+                select: {
+                    id: true,
+                    nome: true,
+                    email: true
+                }
+            });
+            res.status(200).json(users);
+        } catch (error) {
+            res.status(500).json({ mensagem: "Erro ao buscar usuários.", erro: error.message });
+        }
+    }
+
+    // Função para buscar um usuário pelo ID (sem parseInt e com seleção de campos)
+    static async buscarPorId(req, res) {
+        try {
+            // O ID agora é uma String, não precisa mais de parseInt
+            const id = req.params.id; 
+            
+            const user = await prisma.user.findUnique({
+                where: { id: id },
+                // Seleciona apenas os campos seguros para serem retornados
+                select: {
+                    id: true,
+                    nome: true,
+                    email: true,
+                    // Podemos incluir também os itens e propostas do usuário, se quisermos
+                    itens: true,
+                    propostas: true
+                }
+            });
+
+            if (user) {
+                res.status(200).json(user);
+            } else {
+                res.status(404).json({ mensagem: "Usuário não encontrado." });
+            }
+        } catch (error) {
+            res.status(500).json({ mensagem: "Erro ao buscar usuário.", erro: error.message });
+        }
+    }
 };
+
+    
+
+
 
