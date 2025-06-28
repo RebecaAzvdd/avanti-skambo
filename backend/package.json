@@ -1,25 +1,15 @@
 {
   "name": "backend",
   "version": "1.0.0",
-<<<<<<< HEAD
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/server"
-=======
-  "description": "",
-  "main": "src/server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
->>>>>>> build: inicializa projeto com dependências e estrutura do servidor
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-<<<<<<< HEAD
   "description": "",
   "devDependencies": {
     "nodemon": "^3.1.0",
@@ -32,18 +22,5 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2"
-=======
-  "dependencies": {
-    "@prisma/client": "^5.15.0",
-    "bcryptjs": "^2.4.3",
-    "express": "^4.19.2"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.4",
-    "prisma": "^5.15.0"
-  },
-  "prisma": {
-    "seed": "node prisma/seed.js"
->>>>>>> build: inicializa projeto com dependências e estrutura do servidor
   }
 }
