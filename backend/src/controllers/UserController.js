@@ -99,6 +99,53 @@ export class UserController {
     }
   }
 
+  /**
+   * @swagger
+   * /api/user/{id}:
+   *   put:
+   *     summary: Atualiza um usuário pelo ID
+   *     tags:
+   *       - Usuários
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         description: ID do usuário
+   *         schema:
+   *           type: string
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               nome:
+   *                 type: string
+   *               email:
+   *                 type: string
+   *     responses:
+   *       200:
+   *         description: Usuário atualizado com sucesso
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 message:
+   *                   type: string
+   *                 user:
+   *                   type: object
+   *                   properties:
+   *                     id:
+   *                       type: string
+   *                     nome:
+   *                       type: string
+   *                     email:
+   *                       type: string
+   *       404:
+   *         description: Usuário não encontrado ou erro ao atualizar
+   */
   async updateUser(req, res) {
     const { id } = req.params;
     const { nome, email } = req.body;
@@ -120,8 +167,44 @@ export class UserController {
         .status(404)
         .json({ message: "Usuário não encontrado ou erro ao atualizar" });
     }
-  }
+  };
 
+  /**
+ * @swagger
+ * /api/users/{id}:
+ *   delete:
+ *     summary: Deleta um usuário pelo ID
+ *     tags:
+ *       - Usuários
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID do usuário a ser deletado
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Usuário deletado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 user:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     nome:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *       404:
+ *         description: Usuário não encontrado ou erro ao deletar
+ */
   async deleteUser(req, res) {
     const { id } = req.params;
     try {
