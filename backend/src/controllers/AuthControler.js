@@ -1,6 +1,49 @@
 import { AuthService } from '../auth/AuthService.js';
 
 export class AuthController {
+  /**
+ * @swagger
+ * /api/auth/register:
+ *   post:
+ *     summary: Registra um novo usuário
+ *     tags:
+ *       - Autenticação
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - nome
+ *               - email
+ *               - senha
+ *             properties:
+ *               nome:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *                 format: email
+ *               senha:
+ *                 type: string
+ *                 format: password
+ *     responses:
+ *       201:
+ *         description: Usuário cadastrado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 user:
+ *                   type: object
+ *       409:
+ *         description: Email já está em uso
+ *       500:
+ *         description: Erro ao cadastrar usuário
+ */
   async register(req, res) {
     console.log('req.body recebido:', req.body);
     const { nome, email, senha } = req.body;
@@ -21,6 +64,46 @@ export class AuthController {
     }
   };
 
+  /**
+ * @swagger
+ * /api/auth/login:
+ *   post:
+ *     summary: Realiza o login de um usuário
+ *     tags:
+ *       - Autenticação
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - senha
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *               senha:
+ *                 type: string
+ *                 format: password
+ *     responses:
+ *       200:
+ *         description: Login realizado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 token:
+ *                   type: string
+ *                 user:
+ *                   type: object
+ *       401:
+ *         description: Credenciais inválidas ou erro de autenticação
+ */
   async login(req, res) {
     console.log('req.body recebido no login:', req.body);
     const { email, senha } = req.body;
