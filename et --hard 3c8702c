@@ -1,0 +1,26 @@
+[33mbda00fa[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeat/getusers[m[33m, [m[1;31morigin/feat/getusers[m[33m)[m HEAD@{0}: reset: moving to origin/feat/getusers
+[33m3c8702c[m HEAD@{1}: rebase (abort): returning to refs/heads/feat/getusers
+[33m647fc29[m HEAD@{2}: rebase (continue): build: inicializa projeto com dependências e estrutura do servidor
+[33mbda00fa[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeat/getusers[m[33m, [m[1;31morigin/feat/getusers[m[33m)[m HEAD@{3}: rebase (start): checkout origin/feat/getusers
+[33m3c8702c[m HEAD@{4}: rebase (abort): returning to refs/heads/feat/getusers
+[33mbda00fa[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeat/getusers[m[33m, [m[1;31morigin/feat/getusers[m[33m)[m HEAD@{5}: rebase (start): checkout origin/feat/getusers
+[33m3c8702c[m HEAD@{6}: reset: moving to ORIG_HEAD
+[33m3c8702c[m HEAD@{7}: commit: chore: remove comentários e reintegra rotas no servidor
+[33maf873e2[m HEAD@{8}: commit: style: remove comentários do script de seed
+[33mdc9ed90[m HEAD@{9}: commit: refactor: adapta servidor, controller e rota de usuário para ESM e singleton do Prisma
+[33m7d6ec42[m HEAD@{10}: commit: feat: adiciona instância única do PrismaClient em arquivo de configuração
+[33mcacabec[m HEAD@{11}: commit: build: configura projeto para utilizar ES Modules
+[33m9c03161[m HEAD@{12}: commit: refactor: remove app.js e centraliza lógica no server.js
+[33m72971cc[m HEAD@{13}: commit: refactor: reestrutura UserController para métodos de instância e remove comentários
+[33m3538161[m HEAD@{14}: pull origin feat/getusers: Merge made by the 'ort' strategy.
+[33mee62517[m HEAD@{15}: commit: chore: adiciona migração inicial do banco de dados
+[33m7cf5dbd[m HEAD@{16}: commit: feat: adiciona script de seed para popular banco com dados de teste
+[33m8cffcd3[m HEAD@{17}: commit: feat: implementa endpoints GET e lógica no controller de usuário
+[33m7bc4464[m HEAD@{18}: commit: feat: define modelos User, Item e Proposta no schema do Prisma
+[33m3840c02[m HEAD@{19}: commit: build: inicializa projeto com dependências e estrutura do servidor
+[33m8847e18[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{20}: reset: moving to origin/main
+[33m6cb7872[m HEAD@{21}: commit: build: estrutura aplicação Express com arquivos app e server
+[33mdd31a40[m HEAD@{22}: commit: chore: configura dependências e scripts do projeto
+[33m1165f66[m HEAD@{23}: commit: chore: criar branch para GET de usuários
+[33m8847e18[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{24}: checkout: moving from main to feat/getusers
+[33m8847e18[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{25}: clone: from https://github.com/RebecaAzvdd/avanti-skambo.git

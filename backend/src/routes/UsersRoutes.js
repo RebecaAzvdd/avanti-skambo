@@ -7,7 +7,6 @@ const userController = new UserController();
 router.get('/usuarios', userController.listarTodos);
 router.get('/usuarios/:id', userController.buscarPorId);
 
-// Rotas que vieram do GitHub
 router.post('/usuarios', userController.createUser);
 router.put('/usuarios/:id', userController.updateUser);
 router.delete('/usuarios/:id', userController.deleteUser);
