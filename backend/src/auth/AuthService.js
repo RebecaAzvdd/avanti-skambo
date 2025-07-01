@@ -22,14 +22,7 @@ export const AuthService = {
   async loginUser({ email, senha }) {
     const user = await prismaClient.user.findUnique({ where: { email } });
 
-    console.log("Requisição de login:");
-    console.log("Email recebido:", email);
-    console.log("Senha recebida:", senha);
-    console.log("Usuário do banco:", user);
-
     if (!user) throw new Error("Credenciais inválidas");
-
-    console.log("Senha salva no banco:", user.senha);
 
     const senhaCorreta = await bcrypt.compare(senha, user.senha);
     if (!senhaCorreta) throw new Error("Credenciais inválidas");
