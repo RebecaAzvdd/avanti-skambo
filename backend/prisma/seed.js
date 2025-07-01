@@ -1,5 +1,3 @@
-// prisma/seed.js
-
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcryptjs');
 const prisma = new PrismaClient();
@@ -7,22 +5,18 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('Iniciando o seeding...');
 
-  // --- CUIDADO COM SENHAS! ---
-  // Nunca salve senhas em texto plano. Sempre use um hash.
   const senhaAliceHash = await bcrypt.hash('senha123', 10);
   const senhaBrunoHash = await bcrypt.hash('senha456', 10);
 
-  // 1. Inserir Usuários (Users)
   await prisma.user.createMany({
     data: [
       { id: '11111111-1111-1111-1111-111111111111', nome: 'Alice Santos', email: 'alice@example.com', senha: senhaAliceHash },
       { id: '22222222-2222-2222-2222-222222222222', nome: 'Bruno Lima', email: 'bruno@example.com', senha: senhaBrunoHash },
     ],
-    skipDuplicates: true, // Não tenta inserir se o ID já existir
+    skipDuplicates: true,
   });
   console.log('Usuários criados.');
 
-  // 2. Inserir Itens
   await prisma.item.createMany({
     data: [
       { id: 'aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1', nome: 'Livro Harry Potter', descricao: 'Livro em ótimo estado', categoria: 'livros', userResponsavelId: '11111111-1111-1111-1111-111111111111' },
@@ -34,7 +28,6 @@ async function main() {
   });
   console.log('Itens criados.');
 
-  // 3. Inserir Propostas
   await prisma.proposta.createMany({
     data: [
       { id: 'ppppppp1-pppp-pppp-pppp-ppppppppppp1', itemId: 'aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1', userPropostaId: '22222222-2222-2222-2222-222222222222', itemPropostoId: 'aaaaaaa4-aaaa-aaaa-aaaa-aaaaaaaaaaa4', status: 'em andamento' },
