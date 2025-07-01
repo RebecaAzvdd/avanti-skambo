@@ -41,6 +41,35 @@ export class UserController {
     }
   }
 
+
+  /**
+   * @swagger
+   * /api/users:
+   *   post:
+   *     summary: Cria um novo usuário
+   *     tags:
+   *       - Usuários
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               nome:
+   *                 type: string
+   *               email:
+   *                 type: string
+   *               senha:
+   *                 type: string
+   *     responses:
+   *       201:
+   *         description: Usuário criado com sucesso
+   *       409:
+   *         description: Email já está em uso
+   *       500:
+   *         description: Erro ao criar usuário
+   */
   async createUser(req, res) {
     const { nome, email, senha } = req.body;
     try {
