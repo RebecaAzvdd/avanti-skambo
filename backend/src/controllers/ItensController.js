@@ -1,6 +1,47 @@
 import { prismaClient } from "../config/PrismaClient.js";
 
 export class ItensController {
+
+  async getAllItens(req, res) {
+    try {
+      const itens = await prismaClient.item.findMany({
+        include: {
+          userResponsavel: {
+            select: {
+              id: true,
+              nome: true,
+              email: true,
+            },
+          },
+        },
+      });
+      return res.status(200).json(itens);
+    } catch (error) {
+      return res.status(500).json({error: "Erro ao buscar todos os itens."});
+    }
+  }
+
+  async getItensById(req, res) {
+    try {
+      const { id } = req.params;
+      const itens = await prismaClient.item.findUnique({
+        where: { id },
+        include: {
+          userResponsavel: {
+            select: {
+              id: true,
+              nome: true,
+              email: true,
+            },
+          },
+        },
+      });
+      return res.status(200).json(itens);
+    } catch (error) {
+      return res.status(500).json({ error: "Erro ao buscar item por id."});
+    }
+  }
+
   async getAllItensAvailable(req, res) {
     try {
       const itens = await prismaClient.item.findMany({
