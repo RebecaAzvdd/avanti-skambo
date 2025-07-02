@@ -20,7 +20,7 @@ export class PropostaController {
             });
         } catch (error) {
             console.error('Erro ao criar proposta:', error);
-            res.status(500).json({message: 'Error ao criar proposta.'});
+            res.status(500).json({message: 'Error ao criar proposta'});
         }
     }
 
