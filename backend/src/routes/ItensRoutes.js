@@ -8,4 +8,8 @@ itensRouter.get("/itens", itensController.getAllItensAvailable);
 itensRouter.get("/itens/categoria", itensController.getItensByCategory);
 itensRouter.get("/itens/pesquisa", itensController.getItensByKeyWord);
 
+itensRouter.post("/itens", itensController.createItem);
+itensRouter.put("/itens/:id", itensController.updateItem);
+itensRouter.delete("/itens/:id", itensController.deleteItem);
+
 export { itensRouter };
