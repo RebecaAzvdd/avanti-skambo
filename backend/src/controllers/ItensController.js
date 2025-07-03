@@ -338,9 +338,49 @@ export class ItensController {
     }
   }
 
-  // Métodos Eric
+  /**
+ * @swagger
+ * /itens:
+ *   post:
+ *     summary: Cria um novo item
+ *     tags:
+ *       - Itens
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - nome
+ *               - descricao
+ *               - categoria
+ *               - userResponsavelId
+ *             properties:
+ *               nome:
+ *                 type: string
+ *                 example: Camiseta Preta
+ *               descricao:
+ *                 type: string
+ *                 example: Camiseta tamanho M em bom estado
+ *               categoria:
+ *                 type: string
+ *                 example: Roupas
+ *               imagem:
+ *                 type: string
+ *                 example: https://link-da-imagem.com/camiseta.jpg
+ *               userResponsavelId:
+ *                 type: string
+ *                 example: user_abc123
+ *     responses:
+ *       201:
+ *         description: Item criado com sucesso
+ *       400:
+ *         description: Campos obrigatórios não preenchidos
+ *       500:
+ *         description: Erro interno ao criar item
+ */
   async createItem(req, res) {
-    //vi que aqui usaram req.query, devo usar isso também?? ou não faz diferança?
     const { nome, descricao, categoria, imagem, userResponsavelId } = req.body;
 
     if (!nome || !descricao || !categoria || !userResponsavelId) {
@@ -358,7 +398,6 @@ export class ItensController {
           imagem,
           userResponsavelId,
           status: "disponível",
-          //coloquei para sempre começar como disponível, correto?? pois se é adicionado agora ainda não foi usado
         },
       });
 
@@ -366,16 +405,55 @@ export class ItensController {
     } catch (error) {
       return res.status(500).json({ error: "Erro ao criar item." });
     }
-  }
+  };
 
+  /**
+ * @swagger
+ * /itens/{id}:
+ *   put:
+ *     summary: Atualiza um item existente
+ *     tags:
+ *       - Itens
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID do item a ser atualizado
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nome:
+ *                 type: string
+ *                 example: Camiseta Preta
+ *               descricao:
+ *                 type: string
+ *                 example: Camiseta tamanho M em bom estado
+ *               categoria:
+ *                 type: string
+ *                 example: Roupas
+ *               status:
+ *                 type: string
+ *                 example: disponível
+ *               imagem:
+ *                 type: string
+ *                 example: https://link-da-imagem.com/camiseta.jpg
+ *     responses:
+ *       200:
+ *         description: Item atualizado com sucesso
+ *       404:
+ *         description: Item não encontrado ou erro na atualização
+ */
   async updateItem(req, res) {
     const { id } = req.params;
     const { nome, descricao, categoria, status, imagem } = req.body;
 
     try {
-      //aqui eu tô pegando o ID, mas eu deveria usar outro comando? no estudo que eu fiz antes...
-      //... usei um comando pra achar por ID findbyID algo assim, mas não tive certeza se vale pra cá também
-      //... por que no outro eu usei mongoDB e aqui é Prisma então busquei o equivalente nele
       const itemAtualizado = await prismaClient.item.update({
         where: { id },
         data: {
@@ -393,8 +471,28 @@ export class ItensController {
         .status(404)
         .json({ error: "Item não encontrado ou erro na atualização." });
     }
-  }
+  };
 
+  /**
+ * @swagger
+ * /itens/{id}:
+ *   delete:
+ *     summary: Deleta um item existente
+ *     tags:
+ *       - Itens
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID do item a ser deletado
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Item deletado com sucesso
+ *       404:
+ *         description: Item não encontrado para deletar
+ */
   async deleteItem(req, res) {
     const { id } = req.params;
 
@@ -409,5 +507,5 @@ export class ItensController {
         .status(404)
         .json({ error: "Item não encontrado para deletar." });
     }
-  }
-}
+  };
+};
