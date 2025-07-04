@@ -2,6 +2,36 @@ import { prismaClient } from "../config/PrismaClient.js";
 import bcrypt from "bcrypt";
 
 export class UserController {
+
+  /**
+ * @swagger
+ * /users:
+ *   get:
+ *     summary: Lista todos os usuários cadastrados
+ *     tags:
+ *       - Usuários
+ *     responses:
+ *       200:
+ *         description: Lista de usuários retornada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                     example: user_123
+ *                   nome:
+ *                     type: string
+ *                     example: João da Silva
+ *                   email:
+ *                     type: string
+ *                     example: joao@email.com
+ *       500:
+ *         description: Erro ao buscar usuários
+ */
   async listarTodos(req, res) {
     try {
       const users = await prismaClient.user.findMany({
@@ -15,8 +45,52 @@ export class UserController {
     } catch (error) {
       return res.status(500).json({ mensagem: "Erro ao buscar usuários.", erro: error.message });
     }
-  }
+  };
 
+  /**
+ * @swagger
+ * /users/{id}:
+ *   get:
+ *     summary: Busca um usuário pelo ID
+ *     tags:
+ *       - Usuários
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID do usuário
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Usuário encontrado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                   example: user_123
+ *                 nome:
+ *                   type: string
+ *                   example: Maria Oliveira
+ *                 email:
+ *                   type: string
+ *                   example: maria@email.com
+ *                 itens:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                 propostas:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *       404:
+ *         description: Usuário não encontrado
+ *       500:
+ *         description: Erro ao buscar usuário
+ */
   async buscarPorId(req, res) {
     try {
       const { id } = req.params;
@@ -39,7 +113,7 @@ export class UserController {
     } catch (error) {
       return res.status(500).json({ mensagem: "Erro ao buscar usuário.", erro: error.message });
     }
-  }
+  };
 
 
   /**
