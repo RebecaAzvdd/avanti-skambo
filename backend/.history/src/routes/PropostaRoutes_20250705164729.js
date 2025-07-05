@@ -7,4 +7,5 @@ propostaRouter.patch("/propostas/:id/status", propostaController.updateStatusPro
 propostaRouter.post('/propostas', propostaController.createProposta);
 propostaRouter.patch('/propostas/:id/cancelar', propostaController.cancelarProposta);
 
+
 export {propostaRouter};

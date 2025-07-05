@@ -132,4 +132,5 @@ export class PropostaController {
       res.status(404).json({ message: 'Proposta não encontrada ou erro ao cancelar.' });
     }
   }
+
 }
