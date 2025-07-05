@@ -1,15 +1,42 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+  nome String
+  email String @unique
+  senha String
+  itens Item[]
+  propostas Proposta[] @relation("UserPropostas")
+}
+
+model Item {
+  id String @id @default(uuid())
+  nome String
+  descricao String
+  categoria String
+  status String @default("disponível")
+  imagem String?
+  userResponsavel User @relation(fields: [userResponsavelId], references: [id])
+  userResponsavelId String
+  propostas Proposta[] @relation("ItemPropostas")
+  propostaOfertada Proposta[] @relation("ItemProposto")
+}
+
+model Proposta {
+  id String @id @default(uuid())
+  itemId String
+  item Item @relation("ItemPropostas",fields: [itemId], references: [id])
+  userProposta User @relation("UserPropostas", fields: [userPropostaId], references: [id])
+  userPropostaId String
+  itemPropostoId String?
+  itemProposto Item? @relation("ItemProposto", fields: [itemPropostoId], references: [id])
+  status String @default("em andamento")
+  dataProposta DateTime @default(now())
 }
