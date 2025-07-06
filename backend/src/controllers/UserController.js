@@ -5,7 +5,7 @@ export class UserController {
 
   /**
  * @swagger
- * /users:
+ * /api/users:
  *   get:
  *     summary: Lista todos os usuários cadastrados
  *     tags:
@@ -49,7 +49,7 @@ export class UserController {
 
   /**
  * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   get:
  *     summary: Busca um usuário pelo ID
  *     tags:
