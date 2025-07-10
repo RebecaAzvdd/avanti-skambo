@@ -16,3 +16,8 @@ export const getAllItensAvailable = async () => {
     const response = await axios.get(`${API_URL}/disponiveis`);
     return response.data;
 };
+
+export const createItem = async (item) => {
+  const response = await axios.post(API_URL, item);
+  return response.data;
+};
