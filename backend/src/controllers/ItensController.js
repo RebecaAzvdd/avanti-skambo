@@ -389,18 +389,25 @@ export class ItensController {
         .json({ error: "Preencha todos os campos obrigatórios." });
     }
 
+    let imagemPath = null;
     try {
-      let imagemPath = null;
       if (imagem) {
+        console.log("Recebendo imagem base64 com tamanho:", imagem.length);
         imagemPath = await saveBase64Image(imagem);
+        console.log("Imagem salva no caminho:", imagemPath);
       }
+    } catch (err) {
+      console.error("Erro ao salvar imagem:", err);
+      imagemPath = null;
+    }
 
+    try {
       const novoItem = await prismaClient.item.create({
         data: {
           nome,
           descricao,
           categoria,
-          imagem: imagemPath,
+          imagem: imagemPath, // salva caminho no banco
           userResponsavelId,
           status: "disponível",
         },
@@ -408,6 +415,8 @@ export class ItensController {
 
       return res.status(201).json(novoItem);
     } catch (error) {
+      console.error("Erro ao criar item:", error);
+      next(error);
       return res.status(500).json({ error: "Erro ao criar item." });
     }
   }

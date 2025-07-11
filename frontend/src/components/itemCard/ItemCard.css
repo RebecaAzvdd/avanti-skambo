@@ -5,6 +5,7 @@
   overflow: hidden;
   background: white;
   transition: box-shadow 0.2s ease;
+  
 }
 
 .item-card:hover {

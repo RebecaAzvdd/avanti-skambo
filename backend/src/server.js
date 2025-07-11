@@ -13,8 +13,6 @@ app.use('/uploads', express.static('uploads'));
 
 setupSwagger(app);
 
-app.use(cors());
-
 app.listen(3000, () => {
     console.log("Running server http://localhost:3000/api")
      console.log('Documentação Swagger em http://localhost:3000/api-docs');

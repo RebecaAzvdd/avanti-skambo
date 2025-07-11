@@ -9,17 +9,6 @@ const toBase64 = (file) => {
   });
 };
 
-/**
- * Controller para criar item no backend convertendo imagem em base64
- * @param {Object} data
- * @param {string} data.nome
- * @param {string} data.descricao
- * @param {string} data.categoria
- * @param {string} data.userResponsavelId
- * @param {File} [data.imagemFile]
- * @returns {Promise<Object>} Item criado
- */
-
 export const criarItemController = async (data) => {
   let imagemBase64 = null;
 
@@ -36,6 +25,7 @@ export const criarItemController = async (data) => {
   };
 
   try {
+    console.log("Enviando payload:", payload);
     const itemCriado = await createItem(payload);
     return itemCriado;
   } catch (error) {

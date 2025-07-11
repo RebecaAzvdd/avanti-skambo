@@ -1,12 +1,17 @@
+// saveBase64Image.js
 import fs from 'fs/promises';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 async function saveBase64Image(base64String) {
   const matches = base64String.match(/^data:(image\/[a-zA-Z]+);base64,(.+)$/);
   if (!matches) throw new Error('Formato base64 inválido');
 
-  const ext = matches[1].split('/')[1]; 
+  const ext = matches[1].split('/')[1];
   const data = matches[2];
   const buffer = Buffer.from(data, 'base64');
 
@@ -20,5 +25,4 @@ async function saveBase64Image(base64String) {
 
   return `uploads/${filename}`; 
 }
-
 export default saveBase64Image;

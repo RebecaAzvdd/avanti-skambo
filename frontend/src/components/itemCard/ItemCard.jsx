@@ -1,6 +1,5 @@
-import React from 'react';
 import './ItemCard.css';
-
+import { User } from 'lucide-react';
 const ItemCard = ({ item }) => {
   return (
     <div className="item-card">
@@ -11,7 +10,7 @@ const ItemCard = ({ item }) => {
 
       <div className="imagem">
         {item.imagem ? (
-          <img src={item.imagem} alt={item.nome} />
+          <img src={`http://localhost:3000/${item.imagem}` || `${item.imagem}`} alt={item.nome} />
         ) : (
           <div className="no-image">Sem imagem</div>
         )}
@@ -22,7 +21,7 @@ const ItemCard = ({ item }) => {
         <p>{item.descricao}</p>
 
         <div className="responsavel">
-          <img src="/placeholder-user.png" alt="avatar" className="avatar" />
+          <User class="avatar"/>
           <span>{item.userResponsavel?.nome || 'Responsável'}</span>
         </div>
 
