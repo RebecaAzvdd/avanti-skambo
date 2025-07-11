@@ -22,6 +22,7 @@ git clone https://github.com/seu-usuario/avanti-skambo.git
 cd avanti-skambo
 cd backend
 npm install
+npx prisma generate
 ```
 
 ## Configurar .env
