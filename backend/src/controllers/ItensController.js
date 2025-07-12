@@ -1,5 +1,5 @@
 import { prismaClient } from "../config/PrismaClient.js";
-import saveBase64Image from "./ImageController.js";
+import { saveBase64Image } from "../controllers/ImageController.js";
 
 export class ItensController {
   /**
@@ -380,7 +380,7 @@ export class ItensController {
    *       500:
    *         description: Erro interno ao criar item
    */
-  async createItem(req, res) {
+  async createItem(req, res, next) {
     const { nome, descricao, categoria, imagem, userResponsavelId } = req.body;
 
     if (!nome || !descricao || !categoria || !userResponsavelId) {
@@ -389,25 +389,20 @@ export class ItensController {
         .json({ error: "Preencha todos os campos obrigatórios." });
     }
 
-    let imagemPath = null;
+    let imagemFileName = null;
     try {
       if (imagem) {
-        console.log("Recebendo imagem base64 com tamanho:", imagem.length);
-        imagemPath = await saveBase64Image(imagem);
-        console.log("Imagem salva no caminho:", imagemPath);
+        console.log("Processando imagem base64...");
+        imagemFileName = await saveBase64Image(imagem);
+        console.log("Imagem salva como:", imagemFileName);
       }
-    } catch (err) {
-      console.error("Erro ao salvar imagem:", err);
-      imagemPath = null;
-    }
 
-    try {
       const novoItem = await prismaClient.item.create({
         data: {
           nome,
           descricao,
           categoria,
-          imagem: imagemPath, // salva caminho no banco
+          imagem: imagemFileName,
           userResponsavelId,
           status: "disponível",
         },
@@ -417,7 +412,6 @@ export class ItensController {
     } catch (error) {
       console.error("Erro ao criar item:", error);
       next(error);
-      return res.status(500).json({ error: "Erro ao criar item." });
     }
   }
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { convertImageToBase64 } from '../controllers/ItensController';
 const API_URL = 'http://localhost:3000/api/itens';
 
 export const getAllItens = async () => {
@@ -17,7 +17,12 @@ export const getAllItensAvailable = async () => {
     return response.data;
 };
 
-export const createItem = async (item) => {
-  const response = await axios.post(API_URL, item);
+export const createItem = async (itemData) => {
+  if (itemData.imagemFile) {
+    itemData.imagem = await convertImageToBase64(itemData.imagemFile);
+    delete itemData.imagemFile; 
+  }
+
+  const response = await axios.post(API_URL, itemData);
   return response.data;
 };

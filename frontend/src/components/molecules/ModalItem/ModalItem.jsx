@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { criarItemController } from "../../../controllers/ItensController";
-import './ModalItem.css'
-
+import "./ModalItem.css";
+import { createItem } from "../../../services/itemService";
 export default function ModalItem({ onClose, onSuccess }) {
   const [nome, setNome] = useState("");
   const [descricao, setDescricao] = useState("");
@@ -17,7 +16,17 @@ export default function ModalItem({ onClose, onSuccess }) {
   function handleImagemChange(e) {
     const file = e.target.files[0];
     if (file) {
+      if (!file.type.match("image.*")) {
+        setError("Por favor selecione um arquivo valido");
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        setError("A imagem deve ter menos de 5 MB");
+        return;
+      }
       setImagemFile(file);
+      setError(null);
+
       const reader = new FileReader();
       reader.onloadend = () => setImagemPreview(reader.result);
       reader.readAsDataURL(file);
@@ -38,19 +47,21 @@ export default function ModalItem({ onClose, onSuccess }) {
 
     setLoading(true);
     try {
-      const novoItem = await criarItemController({
+      const novoItem = await createItem({
         nome,
         descricao,
         categoria,
         userResponsavelId,
         imagemFile,
       });
-      setLoading(false);
+
       onSuccess && onSuccess(novoItem);
       onClose();
     } catch (err) {
+      console.error("Erro ao criar item", err);
+      setError(err.response?.data?.error || "Erro ao criar item.");
+    } finally {
       setLoading(false);
-      setError("Erro ao criar item.");
     }
   }
 
@@ -59,11 +70,15 @@ export default function ModalItem({ onClose, onSuccess }) {
       <div className="modal-container">
         <header className="modal-header">
           <h2 className="modal-title">Criar Novo Item</h2>
-          <p className="modal-description">Preencha os dados para criar o item.</p>
+          <p className="modal-description">
+            Preencha os dados para criar o item.
+          </p>
         </header>
         <form className="modal-content" onSubmit={handleSubmit} noValidate>
           <div className="form-group">
-            <label htmlFor="nome" className="form-label required">Nome</label>
+            <label htmlFor="nome" className="form-label required">
+              Nome
+            </label>
             <input
               id="nome"
               className="form-input"
@@ -75,7 +90,9 @@ export default function ModalItem({ onClose, onSuccess }) {
           </div>
 
           <div className="form-group">
-            <label htmlFor="descricao" className="form-label required">Descrição</label>
+            <label htmlFor="descricao" className="form-label required">
+              Descrição
+            </label>
             <textarea
               id="descricao"
               className="form-textarea"
@@ -86,7 +103,9 @@ export default function ModalItem({ onClose, onSuccess }) {
           </div>
 
           <div className="form-group">
-            <label htmlFor="categoria" className="form-label required">Categoria</label>
+            <label htmlFor="categoria" className="form-label required">
+              Categoria
+            </label>
             <select
               id="categoria"
               className="form-select"
@@ -104,7 +123,9 @@ export default function ModalItem({ onClose, onSuccess }) {
           </div>
 
           <div className="form-group">
-            <label htmlFor="userResponsavelId" className="form-label required">ID do Usuário Responsável</label>
+            <label htmlFor="userResponsavelId" className="form-label required">
+              ID do Usuário Responsável
+            </label>
             <input
               id="userResponsavelId"
               className="form-input"
@@ -125,12 +146,19 @@ export default function ModalItem({ onClose, onSuccess }) {
                 className="file-input"
                 onChange={handleImagemChange}
               />
-              <label htmlFor="imagem" className="file-upload-button" tabIndex={0}>
+              <label
+                htmlFor="imagem"
+                className="file-upload-button"
+                tabIndex={0}
+              >
                 Selecionar imagem
               </label>
             </div>
             {imagemPreview && (
-              <div className="image-preview" aria-label="Preview da imagem selecionada">
+              <div
+                className="image-preview"
+                aria-label="Preview da imagem selecionada"
+              >
                 <img src={imagemPreview} alt="Preview da imagem" />
               </div>
             )}
@@ -155,7 +183,11 @@ export default function ModalItem({ onClose, onSuccess }) {
               disabled={loading}
               aria-busy={loading}
             >
-              {loading ? <span className="spinner" aria-hidden="true"></span> : "Criar"}
+              {loading ? (
+                <span className="spinner" aria-hidden="true"></span>
+              ) : (
+                "Criar"
+              )}
             </button>
           </footer>
         </form>
