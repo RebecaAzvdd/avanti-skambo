@@ -7,7 +7,7 @@
 .item-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 2.0rem;
   max-width: 1600px; 
   margin: 0 auto;
   width: 100%;
