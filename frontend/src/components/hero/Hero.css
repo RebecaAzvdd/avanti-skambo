@@ -1,0 +1,140 @@
+.hero-section {
+  background-color: #111827;
+  color: white;
+  font-family: sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 5rem 1.5rem;
+}
+
+.hero-container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-text-column {
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background-image: linear-gradient(to right, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: #d1d5db;
+  margin-bottom: 2rem;
+}
+
+.hero-button {
+  background-color: #9333ea;
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-size: 1.125rem;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  cursor: pointer;
+}
+
+.hero-button:hover {
+  background-color: #7e22ce;
+  transform: scale(1.05);
+}
+
+.hero-button-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+  margin-left: 0.5rem;
+}
+
+.hero-visual-column {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-visual-wrapper {
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+}
+
+.hero-visual-shape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-visual-shape-1 {
+  border-radius: 9999px;
+  background-color: #ec4899;
+  opacity: 0.7;
+}
+
+.hero-visual-shape-2 {
+  border-radius: 1rem;
+  background-color: #a855f7;
+  opacity: 0.5;
+}
+
+.hero-visual-icon-wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-visual-icon-img {
+  width: 14rem;
+  height: 14rem;
+  opacity: 0.9;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+  .hero-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hero-text-column {
+    text-align: left;
+  }
+  .hero-title {
+    font-size: 3.75rem;
+    line-height: 1.21;
+  }
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+  .hero-visual-column {
+    display: flex;
+  }
+}
