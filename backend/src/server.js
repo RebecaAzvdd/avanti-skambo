@@ -18,7 +18,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+const UPLOADS_PATH = path.resolve(process.cwd(), 'uploads');
+app.use('/images', express.static(UPLOADS_PATH, {
+    setHeaders: (res, filepath) => {
+        res.set('Cache-Control', 'public, max-age=31536000');
+        const ext = path.extname(filepath).toLowerCase();
+        if (ext === '.webp') res.set('Content-Type', 'image/webp');
+    }
+}));
+
+console.log(`Servindo imagens de: ${UPLOADS_PATH}`);
 
 setupSwagger(app);
 

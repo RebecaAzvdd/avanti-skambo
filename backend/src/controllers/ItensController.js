@@ -1,5 +1,6 @@
 import { prismaClient } from "../config/PrismaClient.js";
-import saveBase64Image from "../controllers/ImageController.js"
+import saveBase64Image from "../controllers/ImageController.js";
+import path from "path";
 
 export class ItensController {
   /**
