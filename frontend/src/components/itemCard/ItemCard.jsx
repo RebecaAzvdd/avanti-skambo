@@ -8,8 +8,8 @@ const ItemCard = ({ item }) => {
   return (
     <div className="item-card">
       <div className="status-categoria">
-        <span className="badge status">{item.status}</span>
-        <span className="badge categoria">{item.categoria}</span>
+        <span className="badge">{item.status}</span>
+        <span className="badge">{item.categoria}</span>
       </div>
 
       <div className="imagem">
@@ -34,10 +34,9 @@ const ItemCard = ({ item }) => {
         <div className="responsavel">
           <User class="avatar"/>
           <span>{item.userResponsavel?.nome || 'Responsável'}</span>
+            <div className="acoes">
+          <span>Propostas {item.qtdPropostas || 0}</span>
         </div>
-
-        <div className="acoes">
-          <span>{item.qtdPropostas || 0} propostas</span>
         </div>
 
         <div className="botoes">

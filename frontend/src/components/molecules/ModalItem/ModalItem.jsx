@@ -11,7 +11,29 @@ export default function ModalItem({ onClose, onSuccess }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const categorias = ["livros", "eletrônicos", "esportes", "roupas"];
+  const categorias = [
+  "Livros",
+  "Eletrônicos",
+  "Esportes",
+  "Roupas",
+  "Beleza",
+  "Casa e Jardim",
+  "Brinquedos",
+  "Automotivo",
+  "Saúde",
+  "Móveis",
+  "Informática",
+  "Pet Shop",
+  "Alimentos e Bebidas",
+  "Ferramentas",
+  "Joias e Relógios",
+  "Música e Instrumentos",
+  "Papelaria",
+  "Filmes e Séries",
+  "Games",
+  "Viagem e Lazer"
+];
+
 
   function handleImagemChange(e) {
     const file = e.target.files[0];
@@ -175,7 +197,7 @@ export default function ModalItem({ onClose, onSuccess }) {
               onClick={onClose}
               disabled={loading}
             >
-              Cancelar
+              CANCELAR
             </button>
             <button
               type="submit"
@@ -186,7 +208,7 @@ export default function ModalItem({ onClose, onSuccess }) {
               {loading ? (
                 <span className="spinner" aria-hidden="true"></span>
               ) : (
-                "Criar"
+                "CRIAR ITEM"
               )}
             </button>
           </footer>
