@@ -110,7 +110,6 @@ export default function Hero() {
                 animate={{ opacity: 1, rotate: 0 }}
                 transition={{ delay: 1, duration: 0.8 }}
                >
-                {/* 3. Usamos uma tag <img> para a imagem importada */}
                 <img src={exchangeIcon} alt="Ícone de troca" className="hero-visual-icon-img" />
                </motion.div>
             </div>
