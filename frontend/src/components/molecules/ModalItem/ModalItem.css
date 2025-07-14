@@ -37,7 +37,7 @@
 
 .modal-description {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: #111827;
   margin: 0;
 }
 
@@ -59,7 +59,7 @@
   display: block;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #374151;
+  color: #111827;
   margin-bottom: 0.5rem;
 }
 
@@ -72,7 +72,7 @@
   width: 100%;
   padding: 0.5rem 0.75rem;
   max-width: 400px;
-  border: 1px solid #d1d5db;
+  border: 1px solid #a855f7;
   border-radius: 6px;
   font-size: 0.875rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -80,38 +80,36 @@
 
 .form-input:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: #a855f7;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .form-textarea {
   width: 100%;
   padding: 0.5rem 0.75rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid #a855f7;
   border-radius: 6px;
   font-size: 0.875rem;
   min-height: 100px;
   resize: vertical;
   max-width: 400px;
-  font-family: inherit;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .form-textarea:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: #a855f7;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .form-select {
   width: 100%;
   padding: 0.5rem 0.75rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid #a855f7;
   border-radius: 6px;
   font-size: 0.875rem;
   max-width: 400px;
   background-color: white;
-
   background-position: right 0.5rem center;
   background-repeat: no-repeat;
   background-size: 1.5em 1.5em;
@@ -121,11 +119,11 @@
 
 .form-select:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: #a855f7;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-/* Grid Layout */
+
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -146,10 +144,10 @@
 .file-upload-button {
   width: 100%;
   padding: 0.5rem 1rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid #a855f7;
   border-radius: 6px;
   background-color: white;
-  color: #374151;
+  color: #111827;
   font-size: 0.875rem;
   max-width: 400px;
   cursor: pointer;
@@ -162,16 +160,15 @@
 
 .file-upload-button:hover {
   background-color: #f9fafb;
-  border-color: #9ca3af;
+  border-color: #a855f7;
 }
 
 .file-upload-button:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: #a855f7;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-/* Image Preview */
 .image-preview {
     margin-top: 0.5rem;
   width: 100%;
@@ -184,11 +181,10 @@
   height: 128px;
   object-fit: cover;
   border-radius: 6px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #a855f7;
   display: block;
 }
 
-/* Modal Footer */
 .modal-footer {
   padding: 1rem 1.5rem 1.5rem 1.5rem;
   border-top: 1px solid #e5e7eb;
@@ -197,12 +193,12 @@
   justify-content: flex-end;
 }
 
-/* Buttons */
 .btn {
   padding: 0.5rem 1rem;
   border-radius: 6px;
   font-size: 0.875rem;
   font-weight: 500;
+  width: 200px;
   cursor: pointer;
   border: none;
   display: inline-flex;
@@ -219,12 +215,12 @@
 }
 
 .btn-primary {
-  background-color: #3b82f6;
+  background-color: #9333ea;
   color: white;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: #2563eb;
+  background-color: #7e22ce;
 }
 
 .btn-primary:focus {
@@ -234,31 +230,30 @@
 
 .btn-secondary {
   background-color: white;
-  color: #374151;
-  border: 1px solid #d1d5db;
+  color: #111827;
+  border: 1px solid #a855f7;
 }
 
 .btn-secondary:hover:not(:disabled) {
   background-color: #f9fafb;
-  border-color: #9ca3af;
+  border-color: #a855f7;
 }
 
 .btn-secondary:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: #a855f7;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .btn-trigger {
-  background-color: #3b82f6;
+  background-color: #a855f7;
   color: white;
 }
 
 .btn-trigger:hover {
-  background-color: #2563eb;
+  background-color: #a855f7;
 }
 
-/* Loading Spinner */
 .spinner {
   width: 1rem;
   height: 1rem;
@@ -274,14 +269,12 @@
   }
 }
 
-/* Icons */
 .icon {
   width: 1rem;
   height: 1rem;
   flex-shrink: 0;
 }
 
-/* Status Badge */
 .status-badge {
   display: inline-block;
   padding: 0.25rem 0.5rem;
@@ -290,22 +283,6 @@
   border-radius: 9999px;
 }
 
-.status-disponivel {
-  background-color: #dcfce7;
-  color: #166534;
-}
-
-.status-reservado {
-  background-color: #fef3c7;
-  color: #92400e;
-}
-
-.status-indisponivel {
-  background-color: #fee2e2;
-  color: #991b1b;
-}
-
-/* Responsive Design */
 @media (max-width: 640px) {
   .modal-overlay {
     padding: 0.5rem;
@@ -355,7 +332,7 @@
 .form-textarea:focus-visible,
 .form-select:focus-visible,
 .file-upload-button:focus-visible {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #a855f7;
   outline-offset: 2px;
 }
 

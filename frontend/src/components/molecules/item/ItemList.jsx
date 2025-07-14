@@ -27,7 +27,7 @@ const ItemList = () => {
 
   return (
     <>
-      {/* <div>
+      {/* { <div>
         <button onClick={() => setModal(true)}>criar item teste</button>
         {modal && (
           <ModalItem
@@ -35,7 +35,7 @@ const ItemList = () => {
             onSuccess={handleSucess}
           ></ModalItem>
         )}
-      </div> */}
+      </div> } */}
       <div className="item-list-page">
         <div className="item-list">
           {items.map((item) => (
