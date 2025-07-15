@@ -35,7 +35,7 @@ const ItemCard = ({ item }) => {
           <User class="avatar"/>
           <span>{item.userResponsavel?.nome || 'Responsável'}</span>
             <div className="acoes">
-          <span>Propostas {item.qtdPropostas || 0}</span>
+          {/* <span>Propostas {item.qtdPropostas || 0}</span> */}
         </div>
         </div>
 
