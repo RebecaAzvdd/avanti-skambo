@@ -1,0 +1,66 @@
+.main-header {
+  background-color: #111827;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+}
+
+.logo-name{
+  height: 17px;
+}
+
+.header-nav {
+  display: flex;
+  gap: 15px;
+}
+  
+.user-image {
+    height: 20px;
+}
+
+
+.nav-button {
+  color: #a855f7;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.nav-button:hover {
+  background: #A855F7;
+  background: linear-gradient(90deg, rgba(168, 85, 247, 1) 0%, rgba(138, 56, 201, 1) 50%, rgba(236, 72, 153, 1) 100%);
+  color: white
+    transition: background-color 0.5s ease;
+}
+
+@media (max-width: 768px) {
+  .main-header {
+    flex-direction: column; /* Coloca a logo e os botões um abaixo do outro */
+    text-align: center; /* Centraliza o texto */
+  }
+
+  .logo {
+    height: 35px; /* Reduz um pouco o tamanho da logo para telas menores */
+  }
+
+  .header-nav {
+    flex-direction: column; /* Coloca os botões um abaixo do outro */
+    gap: 10px; /* Reduz o espaçamento entre os botões */
+    margin-top: 15px; /* Adiciona um espaço entre a logo e os botões */
+  }
+}
