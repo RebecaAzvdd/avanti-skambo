@@ -1,16 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
-
-body {
-  margin: 0;
-  font-family: "Inter", sans-serif;
-  background-color: #f0f2f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  box-sizing: border-box;
-}
-
 .cadastro-container {
   display: flex;
   justify-content: center;
@@ -67,9 +54,7 @@ body {
   font-weight: 500;
 }
 
-.cadastro-form input[type="email"],
-.cadastro-form input[type="password"],
-.cadastro-form input[type="text"] {
+.cadastro-form input{
   padding: 12px 15px;
   border: 1px solid #ddd;
   border-radius: 8px;
