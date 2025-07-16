@@ -1,0 +1,11 @@
+.main-footer {
+    background-color: #9333ea;
+    color: #ffff;
+    height: 50px;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    font-weight: bold;
+}
