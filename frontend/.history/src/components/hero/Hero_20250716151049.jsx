@@ -128,6 +128,7 @@ export default function Hero({ onFilterChange }) {
           </motion.div>
         </div>
 
+        {/* Filtro de categorias - abaixo do hero-grid */}
         <motion.div
           className="filtro-categorias"
           variants={filterVariants}
