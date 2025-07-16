@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./Login.css";
+import "./FormLogin.css";
 
 export default function FormLogin({ autenticado, setAutenticado }) {
   return (
@@ -18,7 +18,7 @@ export default function FormLogin({ autenticado, setAutenticado }) {
 
         <button type="submit">Logar</button>
         <span>
-          Não possui uma conta? faça o <Link to="/cadastro">cadastro</Link>
+          Não possui uma conta? faça o <Link to="/register">cadastro</Link>
         </span>
       </form>
     </div>
