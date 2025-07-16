@@ -116,6 +116,14 @@
   opacity: 0.9;
 }
 
+.filtro-categorias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
 @media (min-width: 768px) {
   .hero-section {
     padding-top: 8rem;
@@ -136,5 +144,17 @@
   }
   .hero-visual-column {
     display: flex;
+  }
+  .filtro-categorias {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 40px;
+  }
+
+  .filtro-categorias .tag-button {
+    font-size: 13px;
+    padding: 6px 12px;
   }
 }

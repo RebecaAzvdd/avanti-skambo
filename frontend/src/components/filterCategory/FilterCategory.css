@@ -1,0 +1,22 @@
+.tag-button {
+  padding: 6px 12px;
+  margin: 4px;
+  border-radius: 20px;
+  border: 1px solid #a855f7;
+  background-color: transparent;
+  color: #a855f7;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tag-button.ativo {
+  background: linear-gradient(90deg, #a855f7, #8a38c9, #ec4899);
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+
+.tag-button:hover {
+  transform: scale(1.05);
+}

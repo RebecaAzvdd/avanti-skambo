@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
+import ModalItem from '../molecules/ModalItem/ModalItem';
 import logo from '../../assets/logo-skambo-3.svg';
 import logoName from '../../assets/logo-name-2.svg';
 import menu from '../../assets/menu-burger.svg';
 
 function Header() {
+  const [mostrarModalItem, setMostrarModalItem] = useState(false);
   const [mostrarModal, setMostrarModal] = useState(false);
   const [pesquisa, setPesquisa] = useState('');
   const modalRef = useRef(null);
@@ -40,8 +42,8 @@ function Header() {
     <header className="main-header">
       <div className="logo-container">
         <Link to="/" className="logo-link">
-          <img src={logo} alt="Logo Skambo" className="logo" />
-          <img src={logoName} alt="Logo Nome Skambo" className="logo-name" />
+          <img src={logo || "/placeholder.svg"} alt="Logo Skambo" className="logo" />
+          <img src={logoName || "/placeholder.svg"} alt="Logo Nome Skambo" className="logo-name" />
         </Link>
       </div>
 
@@ -50,20 +52,27 @@ function Header() {
           Entre ou Cadastre-se
         </Link>
         <button className="menu-button" onClick={toggleModal}>
-          <img src={menu} alt="icone menu" className="menu" />
+          <img src={menu || "/placeholder.svg"} alt="icone menu" className="menu" />
         </button>
       </nav>
 
       {mostrarModal && (
         <div className="modal-menu" ref={modalRef}>
-         <Link className='filter-link'>
+         <button className="filter-link" onClick={() => setMostrarModalItem(true)}>
           <p>Criar item</p>
-         </Link>
-         <Link className='filter-link'>
-          <p>Criar Proposta</p>
-         </Link>
+         </button>
         </div>
       )}
+
+      {mostrarModalItem && (
+  <ModalItem
+    onClose={() => setMostrarModalItem(false)}
+    onSuccess={(itemCriado) => {
+      console.log('Item criado com sucesso:', itemCriado);
+      setMostrarModalItem(false);
+    }}
+  />
+)}
     </header>
   );
 }

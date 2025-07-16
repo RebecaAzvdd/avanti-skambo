@@ -104,7 +104,16 @@
 }
 
 .filter-link {
-    text-decoration: none;
+  background: transparent;
+  color: #a855f7;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.5s ease, color 0.3s ease;
 }
 
 .modal-menu p {
@@ -121,11 +130,15 @@
 }
 
 @media (max-width: 768px) {
+
   .main-header {
-    flex-direction: column;
-    text-align: center;
-    padding: 10px 14px;
-  }
+   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+}
+
 
   .logo-container {
     justify-content: center;
@@ -142,11 +155,10 @@
     height: 15px;
   }
 
-  .header-nav {
+.header-actions {
     flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-    width: 100%;
+    align-items: flex-end;
+    gap: 6px;
   }
 
   .nav-button,
