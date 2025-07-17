@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import './Hero.css';
-import exchangeIcon from '../../assets/exchange-icon.png'; 
+import { motion } from "framer-motion";
+import "./Hero.css";
+import FilterCategory from "../filterCategory/FilterCategory";
+import exchangeIcon from "../../assets/exchange-icon.png";
 
 const ArrowIcon = () => (
   <svg
@@ -16,7 +16,7 @@ const ArrowIcon = () => (
   </svg>
 );
 
-export default function Hero() {
+export default function Hero({ onFilterChange }) {
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (custom) => ({
@@ -34,7 +34,7 @@ export default function Hero() {
     <div className="hero-section">
       <div className="hero-container">
         <div className="hero-grid">
-          
+          {/* Coluna de texto */}
           <div className="hero-text-column">
             <motion.h1
               className="hero-title"
@@ -45,7 +45,7 @@ export default function Hero() {
             >
               Sua plataforma de trocas, simples e inteligente.
             </motion.h1>
-            
+
             <motion.p
               className="hero-subtitle"
               variants={textVariants}
@@ -53,9 +53,10 @@ export default function Hero() {
               animate="visible"
               custom={2}
             >
-              Dê uma nova vida aos seus itens parados. No Avanti-Skambo, você troca o que não usa mais por algo que realmente precisa. Rápido, seguro e divertido!
+              Dê uma nova vida aos seus itens parados. No Skambo, você troca o que não usa mais por algo que realmente
+              precisa. Rápido, seguro e divertido!
             </motion.p>
-            
+
             <motion.button
               className="hero-button"
               variants={textVariants}
@@ -68,35 +69,26 @@ export default function Hero() {
             </motion.button>
           </div>
 
-          <motion.div 
+          {/* Coluna visual */}
+          <motion.div
             className="hero-visual-column"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
               duration: 0.8,
               delay: 0.5,
-              ease: [0, 0.71, 0.2, 1.01]
+              ease: [0, 0.71, 0.2, 1.01],
             }}
           >
             <div className="hero-visual-wrapper">
               <motion.div
                 className="hero-visual-shape hero-visual-shape-1"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  rotate: [0, 90, 0],
-                }}
-                transition={{
-                  duration: 15,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                }}
+                animate={{ scale: [1, 1.1, 1], rotate: [0, 90, 0] }}
+                transition={{ duration: 15, ease: "easeInOut", repeat: Infinity }}
               />
               <motion.div
                 className="hero-visual-shape hero-visual-shape-2"
-                animate={{
-                  scale: [1, 0.9, 1],
-                  rotate: [0, -90, 0],
-                }}
+                animate={{ scale: [1, 0.9, 1], rotate: [0, -90, 0] }}
                 transition={{
                   duration: 20,
                   ease: "easeInOut",
@@ -104,16 +96,24 @@ export default function Hero() {
                   delay: 2,
                 }}
               />
-               <motion.div
+              <motion.div
                 className="hero-visual-icon-wrapper"
                 initial={{ opacity: 0, rotate: -90 }}
                 animate={{ opacity: 1, rotate: 0 }}
                 transition={{ delay: 1, duration: 0.8 }}
-               >
-                <img src={exchangeIcon} alt="Ícone de troca" className="hero-visual-icon-img" />
-               </motion.div>
+              >
+                <img
+                  src={exchangeIcon}
+                  alt="Ícone de troca"
+                  className="hero-visual-icon-img"
+                />
+              </motion.div>
             </div>
           </motion.div>
+        </div>
+
+        <div className="hero-filter-wrapper">
+          <FilterCategory onFilterChange={onFilterChange} />
         </div>
       </div>
     </div>
