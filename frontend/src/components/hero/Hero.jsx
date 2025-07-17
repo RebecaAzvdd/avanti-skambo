@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import "./Hero.css";
 import FilterCategory from "../filterCategory/FilterCategory";
@@ -18,17 +17,6 @@ const ArrowIcon = () => (
 );
 
 export default function Hero({ onFilterChange }) {
-  const [categoriaAtiva, setCategoriaAtiva] = useState("Todos");
-
-  const categorias = ["Todos", "Livros", "Eletrônicos", "Roupas", "Casa e Jardim", "Esportes", "Brinquedos"];
-
-  const handleCategoriaClick = (categoria) => {
-    setCategoriaAtiva(categoria);
-    if (onFilterChange) {
-      onFilterChange(categoria.toLowerCase());
-    }
-  };
-
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (custom) => ({
@@ -42,39 +30,29 @@ export default function Hero({ onFilterChange }) {
     }),
   };
 
-  const filterVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const filterItemVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.3,
-      },
-    },
-  };
-
   return (
     <div className="hero-section">
       <div className="hero-container">
         <div className="hero-grid">
+          {/* Coluna de texto */}
           <div className="hero-text-column">
-            <motion.h1 className="hero-title" variants={textVariants} initial="hidden" animate="visible" custom={1}>
+            <motion.h1
+              className="hero-title"
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
+              custom={1}
+            >
               Sua plataforma de trocas, simples e inteligente.
             </motion.h1>
 
-            <motion.p className="hero-subtitle" variants={textVariants} initial="hidden" animate="visible" custom={2}>
+            <motion.p
+              className="hero-subtitle"
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
+              custom={2}
+            >
               Dê uma nova vida aos seus itens parados. No Skambo, você troca o que não usa mais por algo que realmente
               precisa. Rápido, seguro e divertido!
             </motion.p>
@@ -91,6 +69,7 @@ export default function Hero({ onFilterChange }) {
             </motion.button>
           </div>
 
+          {/* Coluna visual */}
           <motion.div
             className="hero-visual-column"
             initial={{ opacity: 0, scale: 0.5 }}
@@ -110,7 +89,12 @@ export default function Hero({ onFilterChange }) {
               <motion.div
                 className="hero-visual-shape hero-visual-shape-2"
                 animate={{ scale: [1, 0.9, 1], rotate: [0, -90, 0] }}
-                transition={{ duration: 20, ease: "easeInOut", repeat: Infinity, delay: 2 }}
+                transition={{
+                  duration: 20,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  delay: 2,
+                }}
               />
               <motion.div
                 className="hero-visual-icon-wrapper"
@@ -119,7 +103,7 @@ export default function Hero({ onFilterChange }) {
                 transition={{ delay: 1, duration: 0.8 }}
               >
                 <img
-                  src={exchangeIcon || "/placeholder.svg?height=80&width=80"}
+                  src={exchangeIcon}
                   alt="Ícone de troca"
                   className="hero-visual-icon-img"
                 />
@@ -128,20 +112,9 @@ export default function Hero({ onFilterChange }) {
           </motion.div>
         </div>
 
-        <motion.div
-          className="filtro-categorias"
-          variants={filterVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {categorias.map((cat) => (
-            <motion.div key={cat} variants={filterItemVariants}>
-              <FilterCategory ativo={categoriaAtiva === cat} onClick={() => handleCategoriaClick(cat)}>
-                {cat}
-              </FilterCategory>
-            </motion.div>
-          ))}
-        </motion.div>
+        <div className="hero-filter-wrapper">
+          <FilterCategory onFilterChange={onFilterChange} />
+        </div>
       </div>
     </div>
   );

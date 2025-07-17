@@ -20,10 +20,11 @@
   grid-template-columns: 1fr;
   gap: 3rem;
   align-items: center;
+  padding-bottom: 120px;
 }
 
 .hero-text-column {
-  text-align: center;
+  text-align: left;
 }
 
 .hero-title {
