@@ -1,7 +1,7 @@
 .filtro-container {
   background-color: #15213b;
   border-radius: 30px;
-  padding: 9px 35px;
+  padding: 6px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,27 +29,32 @@
   font-weight: bold;
   font-size: 15px;
   color: #ffffff;
-  margin-bottom: 4px; /* Margem menor para aproximar o label do select */
   text-align: left;
-  padding-left: 2px;  /* pequeno recuo para alinhamento */
+  padding-left: 2px;
+  padding: 5px;
 }
 
 .filtro-campo select {
-  padding: 8px 2px;
+  padding: 3px 2px;
   border: none;
   background-color: transparent;
   font-size: 15px;
-  color: #ffffff;
+  color: #9ca3af;
   border-radius: 5px;
   appearance: none;
   outline: none;
   text-align: left;
-  text-indent: 2px;  /* força o texto a começar alinhado com o label */
+  text-indent: 2px;
 }
 
 .filtro-campo select:focus {
   background-color: #1f2937;
   border-bottom: 2px solid #a855f7;
+}
+
+.filtro-campo option {
+  padding: 10px;
+  color: white;
 }
 
 .filtro-buscar {
@@ -78,7 +83,36 @@
   filter: brightness(0) invert(1);
 }
 
-/* Responsivo para celular */
+.filtro-campo.filtro-pesquisa input {
+  background-color: transparent;
+  color: white;
+  border: 1px solid #37415100;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 0.95rem;
+  outline: none;
+  width: 100%;
+  padding: 1px 0 2px 4px; 
+  line-height: 1; 
+  transition: border 0.3s ease;
+}
+
+.filtro-campo.filtro-pesquisa input::placeholder {
+  color: #9ca3af;
+}
+
+/* .filtro-campo.filtro-pesquisa input:focus {
+  border: 1px solid #a855f7;
+} */
+
+.filtro-campo.filtro-pesquisa {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 180px;
+}
+
+
 @media (max-width: 768px) {
   .filtro-container {
     flex-direction: column;
