@@ -22,7 +22,7 @@ export default function ProfileHeader({
   return (
     <div className="profile-header">
       <div className="profile-info">
-        <div className="avatar">{user.nome.charAt(0).toUpperCase()}</div>
+        <div className="avatar-user">{user.nome.charAt(0).toUpperCase()}</div>
         <div className="user-details">
           <h1 className="user-name">{user.nome}</h1>
           <p className="user-email">{user.email}</p>
