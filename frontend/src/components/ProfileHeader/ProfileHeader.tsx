@@ -18,6 +18,7 @@ export default function ProfileHeader({
   onLogout,
   onEditAccount,
 }: ProfileHeaderProps) {
+    if (!user) return null;
   return (
     <div className="profile-header">
       <div className="profile-info">

@@ -10,12 +10,20 @@ function Header() {
   const [mostrarModalItem, setMostrarModalItem] = useState(false);
   const [mostrarModal, setMostrarModal] = useState(false);
   const [pesquisa, setPesquisa] = useState('');
+    const [user, setUser] = useState(null);
   const modalRef = useRef(null);
   const navigate = useNavigate();
 
   const toggleModal = () => {
     setMostrarModal((prev) => !prev);
   };
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if(storedUser){
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -47,10 +55,16 @@ function Header() {
         </Link>
       </div>
 
-      <nav className="header-nav">
-        <Link to="/login" className="nav-button login-button">
-          Entre ou Cadastre-se
-        </Link>
+       <nav className="header-nav">
+        {user ? (
+          <Link to="/profile" className="nav-button login-button">
+            Olá, {user.nome.split(" ")[0]}
+          </Link>
+        ) : (
+          <Link to="/login" className="nav-button login-button">
+            Entre ou Cadastre-se
+          </Link>
+        )}
         <button className="menu-button" onClick={toggleModal}>
           <img src={menu || "/placeholder.svg"} alt="icone menu" className="menu" />
         </button>
