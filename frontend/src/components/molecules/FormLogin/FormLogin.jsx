@@ -1,14 +1,19 @@
 import { Link } from "react-router-dom";
 import "./FormLogin.css";
 
-export default function FormLogin({ autenticado, setAutenticado }) {
+export default function FormLogin() {
   return (
     <div className="cadastro-container">
       <form className="cadastro-form">
         <h1>Login</h1>
         <span>Rápido e grátis, vamos lá!</span>
 
-        <input name="email" label="Email" type="email"placeholder="Email"></input>
+        <input
+          name="email"
+          label="Email"
+          type="email"
+          placeholder="Email"
+        ></input>
         <input
           name="password"
           type="password"
