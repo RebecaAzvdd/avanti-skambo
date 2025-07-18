@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { getAllItens } from "../../../services/itemService";
 import ItemCard from "../../itemCard/ItemCard";
-import "./ItemList.css";
+import "./ItemSection.css";
 import ModalItem from "../ModalItem/ModalItem";
 
-const ItemList = () => {
+const ItemSection = () => {
   const [items, setItems] = useState([]);
   const [modal, setModal] = useState(false);
 
@@ -36,8 +36,8 @@ const ItemList = () => {
           ></ModalItem>
         )}
       </div> } */}
-      <div className="item-list-page">
-        <div className="item-list">
+      <div className="item-section-page">
+        <div className="item-section">
           {items.map((item) => (
             <ItemCard key={item.id} item={item} />
           ))}
@@ -47,4 +47,4 @@ const ItemList = () => {
   );
 };
 
-export default ItemList;
+export default ItemSection;
