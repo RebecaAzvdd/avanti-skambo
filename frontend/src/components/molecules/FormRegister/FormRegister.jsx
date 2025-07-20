@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 import "./FormResgister.css";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-
+import { register } from "../../../services/authService";
 const FormRegister = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
   const [nome, setNome] = useState("");
-
-  const handleSubmit = (event) => {
+  const [error, setError] = useState("");
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const isValidEmail = (email) => {
@@ -36,6 +36,14 @@ const FormRegister = () => {
 
     console.log("Cadastro efetuado com sucesso! confirmação de dados abaixo: ");
     console.log({ email, password, confirmPassword });
+
+    try {
+      await register(nome, email, password);
+      alert("Cadastro realizado com sucesso!");
+      navigate("/login");
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   const togglePassword = () => {
