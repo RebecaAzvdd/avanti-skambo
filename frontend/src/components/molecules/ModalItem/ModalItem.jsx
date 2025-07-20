@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./ModalItem.css";
 import { createItem } from "../../../services/itemService";
 export default function ModalItem({ onClose, onSuccess }) {
   const [nome, setNome] = useState("");
   const [descricao, setDescricao] = useState("");
   const [categoria, setCategoria] = useState("");
-  const [userResponsavelId, setUserResponsavelId] = useState("");
   const [imagemFile, setImagemFile] = useState(null);
+  const [userResponsavelId, setUserResponsavelId] = useState("");
   const [imagemPreview, setImagemPreview] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -34,6 +34,13 @@ export default function ModalItem({ onClose, onSuccess }) {
   "Viagem e Lazer"
 ];
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if(storedUser) {
+      const user = JSON.parse(storedUser)
+      setUserResponsavelId(user.id);
+    }
+  }, []);
 
   function handleImagemChange(e) {
     const file = e.target.files[0];
@@ -145,20 +152,6 @@ export default function ModalItem({ onClose, onSuccess }) {
           </div>
 
           <div className="form-group">
-            <label htmlFor="userResponsavelId" className="form-label required">
-              ID do Usuário Responsável
-            </label>
-            <input
-              id="userResponsavelId"
-              className="form-input"
-              type="text"
-              value={userResponsavelId}
-              onChange={(e) => setUserResponsavelId(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-group">
             <label className="form-label">Imagem (opcional)</label>
             <div className="file-upload-container">
               <input
@@ -197,7 +190,7 @@ export default function ModalItem({ onClose, onSuccess }) {
               onClick={onClose}
               disabled={loading}
             >
-              CANCELAR
+              Cancelar
             </button>
             <button
               type="submit"
@@ -208,7 +201,7 @@ export default function ModalItem({ onClose, onSuccess }) {
               {loading ? (
                 <span className="spinner" aria-hidden="true"></span>
               ) : (
-                "CRIAR ITEM"
+                "Criar Item"
               )}
             </button>
           </footer>

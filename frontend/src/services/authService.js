@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/auth/";
+const API_URL = "http://localhost:3000/api/";
 
 export const register = async (nome, email, senha) => {
   try {
     const response = await axios.post(
-      `${API_URL}/register`,
+      `${API_URL}register`,
       {
         nome,
         email,
@@ -23,7 +23,7 @@ export const register = async (nome, email, senha) => {
     if (error.response && error.response.data && error.response.data.message) {
       throw new Error(error.response.data.message);
     } else {
-      throw new Error("Erro ao fazer login");
+      throw new Error("Erro ao fazer cadastro");
     }
   }
 };
@@ -31,7 +31,7 @@ export const register = async (nome, email, senha) => {
 export const login = async (email, senha) => {
   try {
     const response = await axios.post(
-      `${API_URL}/login`,
+      `${API_URL}login`,
       {
         email,
         senha,

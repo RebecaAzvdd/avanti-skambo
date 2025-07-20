@@ -1,15 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./FormLogin.css";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 // npm install react-icons
+import { login } from "../../../services/authService";
 
 export default function FormLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const isValidEmail = (email) => {
@@ -25,6 +28,13 @@ export default function FormLogin() {
     if (password.length < 6) {
       alert("A senha deve conter no mínimo 6 caracteres.");
       return;
+    }
+
+    try {
+      await login(email, password);
+      navigate("/profile");
+    } catch (err) {
+      setError(err.message)
     }
 
     console.log("Cadastro efetuado com sucesso! confirmação de dados abaixo: ");

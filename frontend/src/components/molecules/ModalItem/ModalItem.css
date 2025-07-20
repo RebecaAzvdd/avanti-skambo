@@ -13,7 +13,7 @@
 }
 
 .modal-container {
-  background: white;
+  background: #111827;
   border-radius: 8px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   width: 100%;
@@ -24,30 +24,34 @@
 }
 
 .modal-header {
-  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  padding: 1.5rem 1.5rem 1rem 2.5rem;
   border-bottom: 1px solid #e5e7eb;
 }
 
 .modal-title {
   font-size: 1.125rem;
   font-weight: 600;
-  color: #111827;
+  color: white;
   margin: 0 0 0.5rem 0;
 }
 
 .modal-description {
   font-size: 0.875rem;
-  color: #111827;
+  color: white;
   margin: 0;
 }
 
-/* Modal Content */
+
 .modal-content {
+    display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 1.5rem;
 }
 
-/* Form Styles */
 .form-group {
+  width: 100%;
+  max-width: 400px;
   margin-bottom: 1rem;
 }
 
@@ -59,7 +63,7 @@
   display: block;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #111827;
+  color: white;
   margin-bottom: 0.5rem;
 }
 
@@ -147,7 +151,7 @@
   border: 1px solid #a855f7;
   border-radius: 6px;
   background-color: white;
-  color: #111827;
+  color: white;
   font-size: 0.875rem;
   max-width: 400px;
   cursor: pointer;
@@ -187,7 +191,6 @@
 
 .modal-footer {
   padding: 1rem 1.5rem 1.5rem 1.5rem;
-  border-top: 1px solid #e5e7eb;
   display: flex;
   gap: 0.5rem;
   justify-content: flex-end;
@@ -197,8 +200,8 @@
   padding: 0.5rem 1rem;
   border-radius: 6px;
   font-size: 0.875rem;
-  font-weight: 500;
-  width: 200px;
+  font-weight: bold;
+  width: 100px;
   cursor: pointer;
   border: none;
   display: inline-flex;
@@ -229,13 +232,12 @@
 }
 
 .btn-secondary {
-  background-color: white;
+  background-color: rgb(150, 150, 150);
   color: #111827;
-  border: 1px solid #a855f7;
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background-color: #f9fafb;
+  background-color: #a3a3a3;
   border-color: #a855f7;
 }
 

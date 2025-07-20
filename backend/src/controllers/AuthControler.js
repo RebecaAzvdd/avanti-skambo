@@ -3,7 +3,7 @@ import { AuthService } from '../auth/AuthService.js';
 export class AuthController {
   /**
  * @swagger
- * /api/auth/register:
+ * /api/register:
  *   post:
  *     summary: Registra um novo usuário
  *     tags:
@@ -66,7 +66,7 @@ export class AuthController {
 
   /**
  * @swagger
- * /api/auth/login:
+ * /api/login:
  *   post:
  *     summary: Realiza o login de um usuário
  *     tags:

@@ -1,10 +1,10 @@
-.item-list-page {
+.item-section-page {
   padding: 2rem;
   display: flex;
   justify-content: center;
 }
 
-.item-list {
+.item-section {
   display: flex;
   flex-wrap: wrap;
   gap: 2.0rem;
