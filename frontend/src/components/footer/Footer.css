@@ -1,11 +1,75 @@
 .main-footer {
-    background-color: #9333ea;
-    color: #ffff;
-    height: 50px;
-    display: flex;
-    flex-shrink: 0;
-    justify-content: center;
-    align-items: center;
-    margin-top: auto;
-    font-weight: bold;
+  background-color: #111827;
+  color: #ffff;
+  padding: 15px 20px;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  font-weight: bold;
+  flex-direction: column;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  height: 60px;
+}
+
+.logo-name{
+  height: 17px;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.footer-sobre {
+}
+
+.footer-contato {
+}
+
+.footer-redes-sociais {
+}
+
+.footer-trabalhe-conosco {
+}
+
+.footer-text {
+  margin-left: 0;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #a855f7;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .main-footer {
+    flex-direction: column;
+    text-align: center; 
+  }
+
+  .logo {
+    height: 37px;
+  }
+
+  .header-nav {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px; 
+  }
 }
