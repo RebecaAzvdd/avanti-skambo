@@ -20,6 +20,24 @@
   box-sizing: border-box;
   animation: fadeIn 0.8s ease-out;
 }
+.container-input {
+  display: flex;
+}
+/* style button ver senha */
+.button-senha {
+  position: "absolute";
+  padding: 12px 15px;
+  margin: 0 0 0 5px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: calc(100% - 270px);
+}
+.button-senha :hover {
+  color: #9333ea;
+}
 
 @keyframes fadeIn {
   from {
@@ -57,7 +75,7 @@
 .cadastro-form input[type="email"],
 .cadastro-form input[type="password"],
 .cadastro-form input[type="text"] {
-  padding: 12px 15px;
+  padding: 8px 15px;
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 1rem;
