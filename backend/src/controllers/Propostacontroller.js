@@ -100,7 +100,7 @@ export class PropostaController {
                 data: {
                     itemId,
                     userPropostaId,
-                    itemPropostaId,
+                    itemPropostoId,
                 }
             });
 
