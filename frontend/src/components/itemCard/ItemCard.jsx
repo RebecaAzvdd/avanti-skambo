@@ -1,6 +1,11 @@
 import './ItemCard.css';
 import { User } from 'lucide-react';
-const ItemCard = ({ item }) => {
+
+// O componente recebe duas props:
+// 1. 'item': O objeto com os dados do item a ser exibido.
+// 2. 'onProposeClick': A função que será executada quando o botão for clicado.
+const ItemCard = ({ item, onProposeClick }) => {
+  // Constrói a URL completa para a imagem a partir do nome do ficheiro vindo da API
   const imageUrl = item.imagem 
     ? `http://localhost:3000/images/${item.imagem.replace('uploads/', '')}`
     : null;
@@ -17,9 +22,11 @@ const ItemCard = ({ item }) => {
         <img 
           src={imageUrl}
           alt={item.nome}
+          // Fallback para caso a imagem não carregue
           onError={(e) => {
-            console.error('Falha ao carregar:', imageUrl);
-            e.target.style.display = 'none';
+            console.error('Falha ao carregar a imagem:', imageUrl);
+            e.target.onerror = null; 
+            e.target.src = 'https://placehold.co/300x180/f3f4f6/6b7280?text=Imagem+Inválida';
           }}
         />
       ) : (
@@ -32,15 +39,16 @@ const ItemCard = ({ item }) => {
         <p>{item.descricao}</p>
 
         <div className="responsavel">
-          <User class="avatar"/>
-          <span>{item.userResponsavel?.nome || 'Responsável'}</span>
-            <div className="acoes">
-          {/* <span>Propostas {item.qtdPropostas || 0}</span> */}
-        </div>
+          <User className="avatar"/>
+          <span>{item.userResponsavel?.nome || 'Responsável não informado'}</span>
         </div>
 
         <div className="botoes">
-          <button className="proposta">Fazer proposta</button>
+          {/* O botão agora tem um evento onClick que chama a função recebida via props.
+              É esta linha que faz a "magia" de abrir o modal acontecer. */}
+          <button className="proposta" onClick={onProposeClick}>
+            Fazer proposta
+          </button>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import ItemCard from "../../itemCard/ItemCard";
 import "./ItemSection.css";
 import ModalItem from "../ModalItem/ModalItem";
 
-const ItemSection = () => {
+const ItemSection = ({ onProposeClick }) => {
   const [items, setItems] = useState([]);
   const [modal, setModal] = useState(false);
 
@@ -27,19 +27,14 @@ const ItemSection = () => {
 
   return (
     <>
-      {/* { <div>
-        <button onClick={() => setModal(true)}>criar item teste</button>
-        {modal && (
-          <ModalItem
-            onClose={() => setModal(false)}
-            onSuccess={handleSucess}
-          ></ModalItem>
-        )}
-      </div> } */}
       <div className="item-section-page">
         <div className="item-section">
           {items.map((item) => (
-            <ItemCard key={item.id} item={item} />
+            <ItemCard
+              key={item.id}
+              item={item}
+              onProposeClick={() => onProposeClick(item)}
+            />
           ))}
         </div>
       </div>
