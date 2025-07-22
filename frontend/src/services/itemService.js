@@ -39,3 +39,24 @@ export const getAllItensByUserId = async (id) => {
     return [];
   }
 };
+export async function getItemsByCategory(categoria) {
+  try {
+    const response = await axios.get(`${API_URL}/categoria`, {
+      params: { categoria },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("Erro ao buscar itens por categoria.");
+  }
+}
+
+export async function getItemsByKeyWord(palavra) {
+  try {
+    const response = await axios.get(`${API_URL}/palavra`, {
+      params: { palavra },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("Erro ao buscar itens por palavra-chave.");
+  }
+}
