@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import "./Hero.css";
-import FilterCategory from "../filterCategory/FilterCategory";
 import exchangeIcon from "../../assets/exchange-icon.png";
 
 const ArrowIcon = () => (
@@ -16,7 +15,7 @@ const ArrowIcon = () => (
   </svg>
 );
 
-export default function Hero({ onFilterChange }) {
+export default function Hero() {
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (custom) => ({
@@ -34,51 +33,25 @@ export default function Hero({ onFilterChange }) {
     <div className="hero-section">
       <div className="hero-container">
         <div className="hero-grid">
-          {/* Coluna de texto */}
           <div className="hero-text-column">
-            <motion.h1
-              className="hero-title"
-              variants={textVariants}
-              initial="hidden"
-              animate="visible"
-              custom={1}
-            >
+            <motion.h1 className="hero-title" variants={textVariants} initial="hidden" animate="visible" custom={1}>
               Sua plataforma de trocas, simples e inteligente.
             </motion.h1>
-
-            <motion.p
-              className="hero-subtitle"
-              variants={textVariants}
-              initial="hidden"
-              animate="visible"
-              custom={2}
-            >
+            <motion.p className="hero-subtitle" variants={textVariants} initial="hidden" animate="visible" custom={2}>
               Dê uma nova vida aos seus itens parados. No Skambo, você troca o que não usa mais por algo que realmente
               precisa. Rápido, seguro e divertido!
             </motion.p>
-
-            <motion.button
-              className="hero-button"
-              variants={textVariants}
-              initial="hidden"
-              animate="visible"
-              custom={3}
-            >
+            <motion.button className="hero-button" variants={textVariants} initial="hidden" animate="visible" custom={3}>
               Explorar Itens
               <ArrowIcon />
             </motion.button>
           </div>
 
-          {/* Coluna visual */}
           <motion.div
             className="hero-visual-column"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              duration: 0.8,
-              delay: 0.5,
-              ease: [0, 0.71, 0.2, 1.01],
-            }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0, 0.71, 0.2, 1.01] }}
           >
             <div className="hero-visual-wrapper">
               <motion.div
@@ -89,12 +62,7 @@ export default function Hero({ onFilterChange }) {
               <motion.div
                 className="hero-visual-shape hero-visual-shape-2"
                 animate={{ scale: [1, 0.9, 1], rotate: [0, -90, 0] }}
-                transition={{
-                  duration: 20,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                  delay: 2,
-                }}
+                transition={{ duration: 20, ease: "easeInOut", repeat: Infinity, delay: 2 }}
               />
               <motion.div
                 className="hero-visual-icon-wrapper"
@@ -102,18 +70,10 @@ export default function Hero({ onFilterChange }) {
                 animate={{ opacity: 1, rotate: 0 }}
                 transition={{ delay: 1, duration: 0.8 }}
               >
-                <img
-                  src={exchangeIcon}
-                  alt="Ícone de troca"
-                  className="hero-visual-icon-img"
-                />
+                <img src={exchangeIcon} alt="Ícone de troca" className="hero-visual-icon-img" />
               </motion.div>
             </div>
           </motion.div>
-        </div>
-
-        <div className="hero-filter-wrapper">
-          <FilterCategory onFilterChange={onFilterChange} />
         </div>
       </div>
     </div>
