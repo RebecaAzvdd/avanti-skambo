@@ -2,21 +2,23 @@ import { useEffect, useState } from "react";
 import { getAllItens } from "../../../services/itemService";
 import ItemCard from "../../itemCard/ItemCard";
 import "./ItemSection.css";
+import FilterCategory from "../../filterCategory/FilterCategory";
 
-const ItemSection = ({onProposeClick}) => {
+const ItemSection = ({ onProposeClick }) => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    async function fetchItems() {
+    async function fetchAll() {
       try {
         const data = await getAllItens();
-        setItems(data);
+        setItems(Array.isArray(data) ? data : []);
       } catch (err) {
-        console.error("Erro ao buscar itens:", err);
+        console.error("Erro ao buscar todos os itens:", err);
+        setItems([]);
       }
     }
 
-    fetchItems();
+    fetchAll();
   }, []);
 
   const handleSucess = (novoItem) => {
@@ -25,11 +27,14 @@ const ItemSection = ({onProposeClick}) => {
 
   return (
     <>
+      <FilterCategory onFilter={setItems} />
       <div className="item-section-page">
         <div className="item-section">
-          {items.map((item) => (
-            <ItemCard key={item.id} item={item} onProposeClick={() => onProposeClick(item)}/>
-          ))}
+          {items && items.length > 0 ? (
+            items.map((item) => <ItemCard key={item.id} item={item} />)
+          ) : (
+            <p>Nenhum item encontrado com os filtros aplicados.</p>
+          )}
         </div>
       </div>
     </>
