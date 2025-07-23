@@ -1,15 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import "./FilterCategory.css";
 import Search from "../../assets/search-icon.svg";
+import {
+  getAllItens,
+  getItemsByCategory,
+  getItemsByKeyWord,
+} from "../../services/itemService";
 
-export default function FilterCategory() {
+export default function FilterCategory({ onFilter }) {
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todos");
+  const [termoPesquisa, setTermoPesquisa] = useState("");
+
+  const handleCategoriaChange = (e) => {
+    setCategoriaSelecionada(e.target.value);
+  };
+
+  const handlePesquisaChange = (e) => {
+    setTermoPesquisa(e.target.value);
+  };
+
+  const handleBuscarClick = async () => {
+    try {
+      const [porCategoria, porPalavra] = await Promise.all([
+        getItemsByCategory(categoriaSelecionada),
+        getItemsByKeyWord(termoPesquisa),
+      ]);
+
+      const categoriaValida =
+        Array.isArray(porCategoria) && porCategoria.length > 0;
+      const palavraValida = Array.isArray(porPalavra) && porPalavra.length > 0;
+
+      if (!categoriaValida && !palavraValida) {
+        const todos = await getAllItens();
+        return onFilter(todos);
+      }
+
+      if (!categoriaValida && palavraValida) {
+        return onFilter(porPalavra);
+      }
+
+      if (categoriaValida && !palavraValida) {
+        return onFilter(porCategoria);
+      }
+
+      const mapa = new Map();
+      [...porCategoria, ...porPalavra].forEach((item) =>
+        mapa.set(item.id, item)
+      );
+      return onFilter(Array.from(mapa.values()));
+    } catch (error) {
+      console.error("Erro ao buscar itens no filtro:", error);
+
+      const todos = await getAllItens();
+      return onFilter(todos);
+    }
+  };
+
   return (
     <div className="filtro-container">
       <div className="filtro-campo">
         <label>Categoria</label>
-        <select>
+        <select value={categoriaSelecionada} onChange={handleCategoriaChange}>
           <option>Todos</option>
-          <option>Livros</option>
+          <option>livros</option>
           <option>Eletrônicos</option>
           <option>Esportes</option>
           <option>Roupas</option>
@@ -34,10 +87,16 @@ export default function FilterCategory() {
 
       <div className="filtro-campo filtro-pesquisa">
         <label>Buscar</label>
-        <input className="texto-input" type="text" placeholder="Pesquise um item..." />
+        <input
+          className="texto-input"
+          type="text"
+          placeholder="Pesquise um item..."
+          value={termoPesquisa}
+          onChange={handlePesquisaChange}
+        />
       </div>
 
-      <button className="filtro-buscar">
+      <button className="filtro-buscar" onClick={handleBuscarClick}>
         <img src={Search} alt="Pesquisar" />
       </button>
     </div>

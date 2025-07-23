@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
-import { getAllItens } from "../../../services/itemService";
+import React, { useEffect, useState } from "react";
+import {
+  getAllItens,
+  getItemsByCategory,
+  getItemsByKeyWord,
+} from "../../../services/itemService";
 import ItemCard from "../../itemCard/ItemCard";
-import "./ItemSection.css";
 import FilterCategory from "../../filterCategory/FilterCategory";
+import "./ItemList.css";
 
-const ItemSection = ({ onProposeClick }) => {
+const ItemList = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -21,15 +25,12 @@ const ItemSection = ({ onProposeClick }) => {
     fetchAll();
   }, []);
 
-  const handleSucess = (novoItem) => {
-    setItems((prev) => [novoItem, ...prev]);
-  };
-
   return (
     <>
       <FilterCategory onFilter={setItems} />
-      <div className="item-section-page">
-        <div className="item-section">
+
+      <div className="item-list-page">
+        <div className="item-list">
           {items && items.length > 0 ? (
             items.map((item) => <ItemCard key={item.id} item={item} />)
           ) : (
@@ -41,4 +42,4 @@ const ItemSection = ({ onProposeClick }) => {
   );
 };
 
-export default ItemSection;
+export default ItemList;
