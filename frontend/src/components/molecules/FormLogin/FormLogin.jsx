@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import "./FormLogin.css";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-// npm install react-icons
 import { login } from "../../../services/authService";
 
 export default function FormLogin() {
@@ -10,6 +9,7 @@ export default function FormLogin() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -32,13 +32,13 @@ export default function FormLogin() {
 
     try {
       await login(email, password);
-      navigate("/profile");
+      setSuccessMessage("Entrando na conta...");
+      setTimeout(() => {
+        navigate("/profile");
+      }, 1500);
     } catch (err) {
-      setError(err.message)
+      setError(err.message);
     }
-
-    console.log("Cadastro efetuado com sucesso! confirmação de dados abaixo: ");
-    console.log({ email, password });
   };
 
   const togglePassword = () => {
@@ -48,25 +48,25 @@ export default function FormLogin() {
   return (
     <div className="cadastro-container">
       <form className="cadastro-form" onSubmit={handleSubmit}>
-        <h1>Login</h1>
+        <h1>Entre na sua conta</h1>
         <span>Rápido e grátis, vamos lá!</span>
+        <div className="container-login-input">
         <input
           name="email"
-          label="Email"
           type="email"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
           required
-        ></input>
+        />
+        </div>
         <div className="container-input">
           <input
             name="password"
             type={showPassword ? "text" : "password"}
-            label="Senha"
-            placeholder="password"
+            placeholder="Senha"
             onChange={(e) => setPassword(e.target.value)}
             required
-          ></input>
+          />
           <button
             className="button-senha"
             type="button"
@@ -75,7 +75,7 @@ export default function FormLogin() {
             {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
           </button>
         </div>
-
+        {successMessage && <div className="mensagem-sucesso">{successMessage}</div>}
         <button type="submit">Logar</button>
         <span>
           Não possui uma conta? faça o <Link to="/register">cadastro</Link>

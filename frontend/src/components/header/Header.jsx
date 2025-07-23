@@ -17,11 +17,11 @@ function Header() {
   }, []);
 
   return (
-    <header className="main-header">
-      <div className="logo-container">
+    <header className="header">
+      <div className="logo-skambo">
         <Link to="/" className="logo-link">
-          <img src={logo || "/placeholder.svg"} alt="Logo Skambo" className="logo" />
-          <img src={logoName || "/placeholder.svg"} alt="Logo Nome Skambo" className="logo-name" />
+          <img src={logo || "/placeholder.svg"} alt="Logo Skambo" className="logo-image" />
+          <img src={logoName || "/placeholder.svg"} alt="Logo Nome Skambo" className="logo-name-skambo" />
         </Link>
       </div>
 

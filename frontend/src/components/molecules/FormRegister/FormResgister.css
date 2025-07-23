@@ -54,6 +54,14 @@
   font-weight: 500;
 }
 
+.container-input-name {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  width: 107%;
+}
+
 .cadastro-form input[type="email"],
 .cadastro-form input[type="password"],
 .cadastro-form input[type="text"] {
@@ -115,6 +123,17 @@
   color: #1b70cc;
   text-decoration: underline;
 }
+
+.mensagem-sucesso {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
 
 @media (max-width: 600px) {
   .cadastro-form {

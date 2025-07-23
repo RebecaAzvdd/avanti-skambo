@@ -3,12 +3,13 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  min-height: 80vh;
   padding: 20px;
   box-sizing: border-box;
+  background-color: #111827;
 }
 
 .cadastro-form {
-  background-color: #ffffff;
   padding: 40px;
   border-radius: 8px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -20,21 +21,38 @@
   box-sizing: border-box;
   animation: fadeIn 0.8s ease-out;
 }
+
 .container-input {
-  display: flex;
+  position: relative;
+  width: 107%;
 }
-/* style button ver senha */
+
+.container-login-input{
+  position: relative;
+  width: 107%;
+}
+
+.container-input input {
+  width: 100%;
+  padding-right: 40px;
+}
+
 .button-senha {
-  position: "absolute";
-  padding: 12px 15px;
-  margin: 0 0 0 5px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
   color: #333;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  width: calc(100% - 270px);
+  background-color: #ffffff;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .button-senha :hover {
   color: #9333ea;
 }
@@ -60,7 +78,7 @@
 
 .cadastro-form > span:first-of-type {
   font-size: 1rem;
-  color: #666;
+  color: #575656;
   margin-bottom: 15px;
   text-align: center;
 }
@@ -133,6 +151,17 @@
   color: #1b70cc;
   text-decoration: underline;
 }
+
+.mensagem-sucesso {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
 
 @media (max-width: 600px) {
   .cadastro-form {
