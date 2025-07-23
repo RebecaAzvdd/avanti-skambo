@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import "./ProposalModal.css";
 import { getAllItensByUserId } from "../../../services/itemService";
 import { createProposta } from "../../../services/propostasService";
-
+import { buscarPorId } from "../../../services/userService";
 const CloseIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -35,13 +35,17 @@ export default function ProposalModal({ isOpen, onClose, targetItem }) {
       setSelectedItemId(null);
        setErrorMessage("");
 
-      getAllItensByUserId(user.id)
-      .then((items) => setUserItems(items))
-        .catch((error) => {
-          console.error("Erro ao buscar itens do usuário:", error);
-          setUserItems([]);
-          setErrorMessage("Erro ao carregar seus itens. Tente novamente.");
-        });
+      buscarPorId(user.id)
+      .then((data) => {
+        const itensDisponiveis = data.itens.filter(
+          (item) => item.status === "disponível"
+        );
+        setUserItems(itensDisponiveis);
+      })
+      .catch((err) => {
+        console.error("Erro ao buscar itens do usuário:", err);
+        setErrorMessage("Erro ao carregar itens do usuário.");
+      });
     }
   }, [isOpen]);
 

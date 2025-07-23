@@ -11,12 +11,12 @@ export const getPropostaByUserId = async (userId) => {
   }
 };
 
-export const createProposta = async () => {
+export const createProposta = async ({ itemId, userPropostaId, itemPropostoId }) => {
   try {
     const response = await axios.post(`${API_URL}`, {
-      itemId: selectedItemId,
-      userPropostaId: currentUser.id,
-      itemPropostoId: userSelectedItemId,
+      itemId,
+      userPropostaId,
+      itemPropostoId,
     });
 
     console.log(response.data.message);
@@ -26,5 +26,6 @@ export const createProposta = async () => {
       "Erro ao enviar proposta:",
       error.response?.data || error.message
     );
+    console.error("Erro ao enviar proposta:", selectedItemId);
   }
 };

@@ -39,7 +39,7 @@ const ItemCard = ({ item, onProposeClick}) => {
         </div>
 
         <div className="botoes">
-          <button className="proposta" onClick={onProposeClick}>Fazer proposta</button>
+          <button className="proposta"  onClick={() => onProposeClick(item)}>Fazer proposta</button>
         </div>
       </div>
     </div>
