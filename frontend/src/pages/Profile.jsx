@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { getPropostaByUserId } from "../services/propostasService";
 import PropostasList from "../components/molecules/PropostasList/PropostasList";
 import EditProfile from "../components/molecules/EditProfile/EditProfile";
+import Footer from "../components/footer/Footer";
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [propostas, setPropostas] = useState();
@@ -58,6 +59,7 @@ const Profile = () => {
        {showEditModal && (
             <EditProfile onClose={() => setShowEditModal(false)} />
           )}
+          <Footer/>
     </>
   );
 };
