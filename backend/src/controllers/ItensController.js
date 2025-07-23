@@ -118,6 +118,22 @@ export class ItensController {
     }
   }
 
+  async getAllItensByUserId(req, res) {
+    const { userId } = req.params;
+    try {
+      const itens = await prismaClient.item.findMany({
+        where: {
+          userResponsavelId: userId,
+        },
+      });
+
+      return res.status(200).json(itens);
+    } catch (error) {
+      console.error("Erro ao buscar itens do usuário:", error);
+      res.status(500).json({ message: "Erro ao buscar itens do usuário." });
+    }
+  }
+
   /**
    * @swagger
    * /api/itens/disponiveis:

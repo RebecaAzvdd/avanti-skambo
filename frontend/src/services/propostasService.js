@@ -1,12 +1,30 @@
 import axios from "axios";
-const API_URL = "http://localhost:3000/api/propostas/";
+const API_URL = "http://localhost:3000/api/propostas";
 
 export const getPropostaByUserId = async (userId) => {
   try {
-    const response = await axios.get(`${API_URL}user/${userId}`);
+    const response = await axios.get(`${API_URL}/user/${userId}`);
     return response.data;
   } catch (error) {
     console.log("Erro ao localizar propostas");
     throw error;
+  }
+};
+
+export const createProposta = async () => {
+  try {
+    const response = await axios.post(`${API_URL}`, {
+      itemId: selectedItemId,
+      userPropostaId: currentUser.id,
+      itemPropostoId: userSelectedItemId,
+    });
+
+    console.log(response.data.message);
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Erro ao enviar proposta:",
+      error.response?.data || error.message
+    );
   }
 };

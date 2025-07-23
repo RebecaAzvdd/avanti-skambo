@@ -93,7 +93,7 @@ export class PropostaController {
   }
 
   async createProposta (req, res) {
-        const { itemId, userPropostaId, itemPropostaId } = req.body;
+        const { itemId, userPropostaId, itemPropostoId } = req.body;
 
         try {
             const novaProposta = await prismaClient.proposta.create({
