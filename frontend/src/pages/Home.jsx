@@ -3,6 +3,7 @@ import Header from "../components/header/Header";
 import Hero from "../components/hero/Hero";
 import ItemSection from "../components/molecules/ItemSection/ItemSection";
 import ProposalModal from "../components/molecules/ProposalModal/ProposalModal";
+import Footer from "../components/footer/Footer";
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,6 +28,7 @@ const Home = () => {
         onClose={handleCloseModal}
         targetItem={currentTargetItem}
       />
+      <Footer />
     </>
   );
 };
