@@ -23,7 +23,19 @@
   overflow-y: auto
 }
 
-.modal-header {
+.modal-content-item {
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 800px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+}
+
+.modal-header-item {
   padding: 1.5rem 1.5rem 1rem 2.5rem;
   border-bottom: 1px solid #e5e7eb;
 }
@@ -305,9 +317,6 @@
     grid-template-columns: 1fr;
   }
 
-  .modal-footer {
-    flex-direction: column-reverse;
-  }
 
   .btn {
     width: 100%;

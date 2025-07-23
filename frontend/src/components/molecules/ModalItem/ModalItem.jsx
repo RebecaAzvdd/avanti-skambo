@@ -97,13 +97,13 @@ export default function ModalItem({ onClose, onSuccess }) {
   return (
     <div className="modal-overlay" role="dialog" aria-modal="true">
       <div className="modal-container">
-        <header className="modal-header">
+        <header className="modal-header-item">
           <h2 className="modal-title">Criar Novo Item</h2>
           <p className="modal-description">
             Preencha os dados para criar o item.
           </p>
         </header>
-        <form className="modal-content" onSubmit={handleSubmit} noValidate>
+        <form className="modal-content-item" onSubmit={handleSubmit} noValidate>
           <div className="form-group">
             <label htmlFor="nome" className="form-label required">
               Nome
