@@ -10,6 +10,7 @@ itensRouter.get("/itens/categoria", itensController.getItensByCategory);
 itensRouter.get("/itens/pesquisa", itensController.getItensByKeyWord);
 
 itensRouter.get("/itens/user/:id", itensController.getAllItensByUserId);
+
 itensRouter.get("/itens/:id", itensController.getItensById);
 
 itensRouter.post("/itens", itensController.createItem);

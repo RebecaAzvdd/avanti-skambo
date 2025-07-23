@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./ProposalModal.css";
+import { getAllItensByUserId } from "../../../services/itemService";
+import { createProposta } from "../../../services/propostasService";
 
 const CloseIcon = () => (
   <svg
@@ -22,15 +24,45 @@ const CloseIcon = () => (
 export default function ProposalModal({ isOpen, onClose, targetItem }) {
   const [userItems, setUserItems] = useState([]);
   const [selectedItemId, setSelectedItemId] = useState(null);
+  const [userResponsavelId, setUserResponsavelId] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    if (isOpen) {
-     
+    const storedUser = localStorage.getItem("user");
+    if (isOpen && storedUser) {
+      const user = JSON.parse(storedUser)
+      setUserResponsavelId(user.id);
+      setSelectedItemId(null);
+       setErrorMessage("");
+
+      getAllItensByUserId(user.id)
+      .then((items) => setUserItems(items))
+        .catch((error) => {
+          console.error("Erro ao buscar itens do usuário:", error);
+          setUserItems([]);
+          setErrorMessage("Erro ao carregar seus itens. Tente novamente.");
+        });
     }
   }, [isOpen]);
 
   const handleProposalSubmit = () => {
-    
+     if (!selectedItemId || !targetItem || !userResponsavelId) return;
+
+    setErrorMessage(""); 
+
+    createProposta({
+      itemId: targetItem.id,
+      userPropostaId: userResponsavelId,
+      itemPropostoId: selectedItemId,
+    })
+      .then((response) => {
+        setErrorMessage("");
+        onClose();
+      })
+      .catch((error) => {
+        console.error("Erro ao enviar proposta:", error);
+        setErrorMessage("Erro ao enviar proposta. Tente novamente.");
+      });
   };
 
   const getImageUrl = (imageName) => {
@@ -128,6 +160,13 @@ export default function ProposalModal({ isOpen, onClose, targetItem }) {
                 </div>
               </div>
             </div>
+              
+              {errorMessage && (
+              <div className="error-message" style={{ color: "red", marginBottom: "1rem" }}>
+                {errorMessage}
+              </div>
+            )}
+            
             <div className="modal-footer">
               <button className="button-secondary" onClick={onClose}>
                 Cancelar
