@@ -31,7 +31,7 @@ const ItemSection = ({ onProposeClick }) => {
       <div className="item-section-page">
         <div className="item-section">
           {items && items.length > 0 ? (
-            items.map((item) => <ItemCard key={item.id} item={item} />)
+            items.map((item) => <ItemCard key={item.id} item={item} onProposeClick={() => onProposeClick(item)}/>)
           ) : (
             <p>Nenhum item encontrado com os filtros aplicados.</p>
           )}
