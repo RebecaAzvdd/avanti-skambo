@@ -55,7 +55,7 @@ export class ItensController {
     } catch (error) {
       return res.status(500).json({ error: "Erro ao buscar todos os itens." });
     }
-  }
+  };
 
   /**
    * @swagger
@@ -116,7 +116,23 @@ export class ItensController {
     } catch (error) {
       return res.status(500).json({ error: "Erro ao buscar item por id." });
     }
-  }
+  };
+
+  async getAllItensByUserId(req, res) {
+    const { userId } = req.params;
+    try {
+      const itens = await prismaClient.item.findMany({
+        where: {
+          userResponsavelId: userId,
+        },
+      });
+
+      return res.status(200).json(itens);
+    } catch (error) {
+      console.error("Erro ao buscar itens do usuário:", error);
+      res.status(500).json({ message: "Erro ao buscar itens do usuário." });
+    }
+  };
 
   /**
    * @swagger
@@ -177,7 +193,7 @@ export class ItensController {
         .status(500)
         .json({ error: "Erro ao buscar itens disponíveis." });
     }
-  }
+  };
 
   /**
    * @swagger
@@ -253,7 +269,7 @@ export class ItensController {
         .status(500)
         .json({ error: "Erro ao filtrar itens por categoria." });
     }
-  }
+  };
 
   /**
    * @swagger
@@ -337,7 +353,7 @@ export class ItensController {
         .status(500)
         .json({ error: "Erro ao buscar itens por palavra-chave." });
     }
-  }
+  };
 
   /**
    * @swagger
@@ -414,7 +430,7 @@ export class ItensController {
       console.error("Erro ao criar item:", error);
       next(error);
     }
-  }
+  };
 
   /**
    * @swagger
@@ -480,7 +496,7 @@ export class ItensController {
         .status(404)
         .json({ error: "Item não encontrado ou erro na atualização." });
     }
-  }
+  };
 
   /**
    * @swagger
@@ -516,5 +532,5 @@ export class ItensController {
         .status(404)
         .json({ error: "Item não encontrado para deletar." });
     }
-  }
-}
+  };
+};

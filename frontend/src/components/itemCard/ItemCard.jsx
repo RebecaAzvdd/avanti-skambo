@@ -1,6 +1,8 @@
 import './ItemCard.css';
 import { User } from 'lucide-react';
-const ItemCard = ({ item }) => {
+
+const ItemCard = ({ item, onProposeClick}) => {
+
   const imageUrl = item.imagem 
     ? `http://localhost:3000/images/${item.imagem.replace('uploads/', '')}`
     : null;
@@ -34,13 +36,10 @@ const ItemCard = ({ item }) => {
         <div className="responsavel">
           <User class="avatar"/>
           <span>{item.userResponsavel?.nome || 'Responsável'}</span>
-            <div className="acoes">
-          {/* <span>Propostas {item.qtdPropostas || 0}</span> */}
-        </div>
         </div>
 
         <div className="botoes">
-          <button className="proposta">Fazer proposta</button>
+          <button className="proposta" onClick={onProposeClick}>Fazer proposta</button>
         </div>
       </div>
     </div>
