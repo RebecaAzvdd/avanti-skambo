@@ -5,11 +5,12 @@ import { logout } from "../controllers/AuthController";
 import { useNavigate } from "react-router-dom";
 import { getPropostaByUserId } from "../services/propostasService";
 import PropostasList from "../components/molecules/PropostasList/PropostasList";
-
+import EditProfile from "../components/molecules/EditProfile/EditProfile";
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [propostas, setPropostas] = useState();
-  const [loading, setLoading] = useState()
+  const [loading, setLoading] = useState();
+   const [showEditModal, setShowEditModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,7 +41,7 @@ const Profile = () => {
   };
 
   const handleEditAccount = () => {
-    console.log("edi");
+    setShowEditModal(true);
   };
 
   return (
@@ -54,6 +55,9 @@ const Profile = () => {
        {( user &&
         <PropostasList propostas={propostas} currentUserId={user.id}/>
        )}
+       {showEditModal && (
+            <EditProfile onClose={() => setShowEditModal(false)} />
+          )}
     </>
   );
 };
