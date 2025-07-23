@@ -16,10 +16,6 @@
   gap: 10px;
 }
 
-.menu {
-  height: 20px;
-}
-
 .logo-link {
   display: flex;
   align-items: center;
@@ -41,69 +37,7 @@
   align-items: center;
 }
 
-.menu-button {
-  background: transparent;
-  color: #a855f7;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
-  transition: background-color 0.5s ease, color 0.3s ease;
-}
-
-.menu-button:active {
-  transform: scale(0.95);
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
 .nav-button {
-  background: transparent;
-  color: #a855f7;
-  text-decoration: none;
-  font-weight: bold;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 15px ;
-  transition: background-color 0.5s ease, color 0.3s ease;
-}
-
-.nav-button:hover {
-  background: linear-gradient(90deg, rgba(168, 85, 247, 1) 0%, rgba(138, 56, 201, 1) 50%, rgba(236, 72, 153, 1) 100%);
-  color: white;
-}
-
-.modal-menu {
-  position: absolute;
-  top: 70px;
-  right: 20px;
-  background-color: #15213b;
-  color: white;
-  padding: 20px 20px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  width: 200px;
-  max-height: 300px;
-  overflow-y: auto;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.filter-link {
   background: transparent;
   color: #a855f7;
   text-decoration: none;
@@ -114,37 +48,27 @@
   cursor: pointer;
   font-size: 15px;
   transition: background-color 0.5s ease, color 0.3s ease;
+  white-space: nowrap;
 }
 
-.modal-menu p {
-  margin: 20px 0;
-  cursor: pointer;
-  transition: color 0.2s;
-  font-weight: bold;
-  color: #a855f7;
-}
-
-.modal-menu p:hover {
-  color: #ffffff;
-  font-weight: bold;
+.nav-button:hover {
+  background: linear-gradient(90deg, rgba(168, 85, 247, 1) 0%, rgba(138, 56, 201, 1) 50%, rgba(236, 72, 153, 1) 100%);
+  color: white;
 }
 
 @media (max-width: 768px) {
-
   .main-header {
-   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 14px;
-}
-
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+  }
 
   .logo-container {
     justify-content: center;
     flex-wrap: wrap;
     gap: 6px;
-    margin-bottom: 10px;
   }
 
   .logo {
@@ -155,52 +79,8 @@
     height: 15px;
   }
 
-.header-actions {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 6px;
-  }
-
-  .nav-button,
-  .menu-button {
-    width: 90%;
+  .nav-button {
     font-size: 14px;
-    padding: 10px;
-  }
-
-  .search-form {
-    width: 100%;
-    padding: 0 15px;
-    box-sizing: border-box;
-    margin-top: 10px;
-  }
-
-  .modal-menu {
-    top: 55%;
-    left: 50%;
-    right: auto;
-    transform: translate(-50%, -50%);
-    width: 85%;
-    max-height: 60vh;
-    padding: 16px;
-  }
-
-  .modal-menu p {
-    font-size: 15px;
-    margin: 12px 0;
-  }
-
-  .tag-button {
-    font-size: 13px;
-    padding: 6px 14px;
-    flex: 1 0 auto;
-  }
-
-  .filtro-tags-container {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0 10px;
-    gap: 8px;
+    padding: 8px 10px;
   }
 }
-

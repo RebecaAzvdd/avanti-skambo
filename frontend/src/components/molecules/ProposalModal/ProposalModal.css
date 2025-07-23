@@ -64,7 +64,8 @@
 .modal-body {
   flex-grow: 1;
   overflow-y: auto;
-  padding-right: 10px;
+  padding-right: 0px;
+  scrollbar-width: none;
 }
 
 .proposal-details {
@@ -126,12 +127,11 @@
   padding-top: 1.5rem;
 }
 
-/* --- ALTERAÇÃO AQUI --- */
 .items-grid {
-  display: flex;
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
-  overflow-x: auto;
-  padding: 0.5rem 0.25rem 1.5rem 0.25rem; /* Adicionado padding-top e aumentado o padding-bottom */
+  padding: 0.5rem 0.25rem 1.5rem 0.25rem;
 }
 
 .user-item-card {

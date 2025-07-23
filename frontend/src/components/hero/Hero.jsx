@@ -15,7 +15,7 @@ const ArrowIcon = () => (
   </svg>
 );
 
-export default function Hero() {
+export default function Hero({ onExploreClick }) {
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (custom) => ({
@@ -41,7 +41,14 @@ export default function Hero() {
               Dê uma nova vida aos seus itens parados. No Skambo, você troca o que não usa mais por algo que realmente
               precisa. Rápido, seguro e divertido!
             </motion.p>
-            <motion.button className="hero-button" variants={textVariants} initial="hidden" animate="visible" custom={3}>
+            <motion.button
+              onClick={onExploreClick}
+              className="hero-button"
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
+              custom={3}
+            >
               Explorar Itens
               <ArrowIcon />
             </motion.button>
