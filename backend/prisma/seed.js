@@ -6,7 +6,12 @@ const prisma = new PrismaClient();
 
 async function main() {
   console.log('Iniciando o seeding...');
+  
+  await prisma.proposta.deleteMany();
+  await prisma.item.deleteMany();
+  await prisma.user.deleteMany();
 
+  console.log('Tabelas limpas.');
   // Senhas
   const senhaAliceHash = await bcrypt.hash('senha123', 10);
   const senhaBrunoHash = await bcrypt.hash('senha456', 10);
