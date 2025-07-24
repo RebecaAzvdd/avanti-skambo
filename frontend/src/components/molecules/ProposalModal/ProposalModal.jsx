@@ -158,7 +158,7 @@ export default function ProposalModal({ isOpen, onClose, targetItem }) {
                       onClick={() => setSelectedItemId(item.id)}
                     >
                       <img src={getImageUrl(item.imagem)} alt={item.nome} />
-                      <p>{item.nome}</p>
+                      <p className="item-nome">{item.nome}</p>
                     </div>
                   ))}
                 </div>

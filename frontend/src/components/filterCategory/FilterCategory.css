@@ -6,7 +6,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 25px;
-  max-width: 1000px;
+  max-width: 800px;
   margin: 40px auto 0;
   flex-wrap: wrap;
 }
@@ -113,12 +113,14 @@
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 768px){
   .filtro-container {
     flex-direction: column;
     align-items: stretch;
     padding: 25px;
     gap: 10px;
+      max-width: 450px;
+    width: 100%;
   }
 
   .filtro-campo {
@@ -137,5 +139,17 @@
     border-radius: 25px;
     width: 50%;
     margin-top: 10px;
+  }
+  
+
+}
+@media (min-width: 320px) and (max-width: 465px) {
+  .filtro-container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 25px;
+    gap: 10px;
+    max-width: 300px;
+    width: 100%;
   }
 }

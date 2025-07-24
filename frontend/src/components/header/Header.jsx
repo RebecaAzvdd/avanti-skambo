@@ -31,7 +31,7 @@ function Header() {
             <Link to="/profile" className="nav-button login-button">
               Olá, {user.nome.split(" ")[0]}
             </Link>
-            <button className="nav-button" onClick={() => setMostrarModalItem(true)}>
+            <button className="nav-button " onClick={() => setMostrarModalItem(true)}>
               Criar Item
             </button>
           </>
