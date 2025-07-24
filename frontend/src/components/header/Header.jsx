@@ -1,22 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 import ModalItem from '../molecules/ModalItem/ModalItem';
 import logo from '../../assets/logo-skambo-3.svg';
 import logoName from '../../assets/logo-name-2.svg';
-import menu from '../../assets/menu-burger.svg';
 
 function Header() {
   const [mostrarModalItem, setMostrarModalItem] = useState(false);
-  const [mostrarModal, setMostrarModal] = useState(false);
-  const [pesquisa, setPesquisa] = useState('');
-    const [user, setUser] = useState(null);
-  const modalRef = useRef(null);
-  const navigate = useNavigate();
-
-  const toggleModal = () => {
-    setMostrarModal((prev) => !prev);
-  };
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -24,27 +15,6 @@ function Header() {
       setUser(JSON.parse(storedUser));
     }
   }, []);
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setMostrarModal(false);
-      }
-    }
-
-    if (mostrarModal) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [mostrarModal]);
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    console.log("Pesquisar:", pesquisa);
-  };
 
   return (
     <header className="main-header">
@@ -55,38 +25,32 @@ function Header() {
         </Link>
       </div>
 
-       <nav className="header-nav">
+      <nav className="header-nav">
         {user ? (
-          <Link to="/profile" className="nav-button login-button">
-            Olá, {user.nome.split(" ")[0]}
-          </Link>
+          <>
+            <Link to="/profile" className="nav-button login-button">
+              Olá, {user.nome.split(" ")[0]}
+            </Link>
+            <button className="nav-button " onClick={() => setMostrarModalItem(true)}>
+              Criar Item
+            </button>
+          </>
         ) : (
           <Link to="/login" className="nav-button login-button">
             Entre ou Cadastre-se
           </Link>
         )}
-        <button className="menu-button" onClick={toggleModal}>
-          <img src={menu || "/placeholder.svg"} alt="icone menu" className="menu" />
-        </button>
       </nav>
 
-      {mostrarModal && (
-        <div className="modal-menu" ref={modalRef}>
-         <button className="filter-link" onClick={() => setMostrarModalItem(true)}>
-          <p>Criar item</p>
-         </button>
-        </div>
-      )}
-
       {mostrarModalItem && (
-  <ModalItem
-    onClose={() => setMostrarModalItem(false)}
-    onSuccess={(itemCriado) => {
-      console.log('Item criado com sucesso:', itemCriado);
-      setMostrarModalItem(false);
-    }}
-  />
-)}
+        <ModalItem
+          onClose={() => setMostrarModalItem(false)}
+          onSuccess={(itemCriado) => {
+            console.log('Item criado com sucesso:', itemCriado);
+            setMostrarModalItem(false);
+          }}
+        />
+      )}
     </header>
   );
 }

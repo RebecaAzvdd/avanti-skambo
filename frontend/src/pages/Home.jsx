@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Header from "../components/header/Header";
 import Hero from "../components/hero/Hero";
 import ItemSection from "../components/molecules/ItemSection/ItemSection";
@@ -9,6 +9,9 @@ const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentTargetItem, setCurrentTargetItem] = useState(null);
 
+  // 1. Cria uma referência para a seção de itens
+  const itemSectionRef = useRef(null);
+
   const handleOpenProposalModal = (item) => {
     setCurrentTargetItem(item);
     setIsModalOpen(true);
@@ -18,11 +21,19 @@ const Home = () => {
     setIsModalOpen(false);
   };
 
+  const handleScrollToItems = () => {
+    itemSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <>
-      <Header></Header>
-      <Hero />
-      <ItemSection onProposeClick={handleOpenProposalModal} />
+      <Header />
+      <Hero onExploreClick={handleScrollToItems} />
+
+      <div ref={itemSectionRef}>
+        <ItemSection onProposeClick={handleOpenProposalModal} />
+      </div>
+      
       <ProposalModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}

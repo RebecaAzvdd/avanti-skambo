@@ -1,8 +1,22 @@
+import { useEffect, useState } from 'react';
 import './ItemCard.css';
 import { User } from 'lucide-react';
-
+import { useNavigate } from 'react-router-dom';
 const ItemCard = ({ item, onProposeClick}) => {
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    setIsUserLoggedIn(!!storedUser);
+  })
 
+   const handleProposeClick = () => {
+    if (isUserLoggedIn) {
+      onProposeClick(item);
+    } else {
+      navigate('/register'); 
+    }
+  };
   const imageUrl = item.imagem 
     ? `http://localhost:3000/images/${item.imagem.replace('uploads/', '')}`
     : null;
@@ -38,8 +52,13 @@ const ItemCard = ({ item, onProposeClick}) => {
           <span>{item.userResponsavel?.nome || 'Responsável'}</span>
         </div>
 
-        <div className="botoes">
-          <button className="proposta"  onClick={() => onProposeClick(item)}>Fazer proposta</button>
+         <div className="botoes">
+          <button
+            className="proposta"
+             onClick={handleProposeClick}
+          >
+            Fazer proposta
+          </button>
         </div>
       </div>
     </div>
