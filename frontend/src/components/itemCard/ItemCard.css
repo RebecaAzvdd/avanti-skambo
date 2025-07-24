@@ -1,0 +1,177 @@
+.item-card {
+  border: 1px solid white;
+  border-radius: 8px;
+  width: 300px;
+  overflow: hidden;
+  background: white;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px); 
+}
+
+.status-categoria {
+  padding: 12px 12px 0 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.badge {
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 12px;
+  border: 1px solid white;
+   background-color: white;
+  color: #111127;
+  border-color: #111127;
+}
+.imagem {
+  padding: 0 12px;
+  margin-top: 8px;
+}
+
+.imagem img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: transform 0.2s ease;
+}
+
+.item-card:hover .imagem img {
+  transform: scale(1.02);
+}
+
+.no-image {
+  width: 100%;
+  height: 180px;
+  background-color: #f3f4f6;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  font-size: 14px;
+  border: 2px dashed #d1d5db;
+}
+
+.conteudo {
+  padding: 16px;
+}
+
+.conteudo h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #111127;
+  line-height: 1.3;
+  /* Limita a 1 linha */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.conteudo p {
+  font-size: 14px;
+  color: #111127;
+  margin: 0 0 16px 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.responsavel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+    background: linear-gradient(135deg, #ec4899, #9333ea);
+  font-size: 14px;
+}
+
+.responsavel span{
+  font-size: 14px;
+  font-weight: 500;
+  color: #111127;
+}
+
+.acoes {
+  font-size: 14px;
+  color: #111127;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.acoes span {
+  font-weight: 500;
+}
+
+.botoes {
+  display: flex;
+  gap: 8px;
+}
+
+.botoes button {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.detalhes {
+  background-color: white;
+  color: #111127;
+}
+
+.detalhes:hover {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.proposta {
+  background-color: #422680;
+  border-color: #7f3bbe;
+  color: white;
+}
+
+.proposta:hover {
+  background-color: #341671;;
+}
+
+.proposta:disabled {
+  background-color: #9ca3af;
+  border-color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .item-card {
+    width: 100%;
+    max-width: 350px;
+  }
+}

@@ -93,14 +93,14 @@ export class PropostaController {
   }
 
   async createProposta (req, res) {
-        const { itemId, userPropostaId, itemPropostaId } = req.body;
+        const { itemId, userPropostaId, itemPropostoId } = req.body;
 
         try {
             const novaProposta = await prismaClient.proposta.create({
                 data: {
                     itemId,
                     userPropostaId,
-                    itemPropostaId,
+                    itemPropostoId,
                 }
             });
 
@@ -130,6 +130,29 @@ export class PropostaController {
     } catch (error) {
       console.error('Erro ao cancelar proposta:', error);
       res.status(404).json({ message: 'Proposta não encontrada ou erro ao cancelar.' });
+    }
+  }
+
+  async getPropostaByUserId(req, res){
+    const { userId } = req.params;
+
+    try{
+      const propostas = await prismaClient.proposta.findMany({
+        where: {
+          userPropostaId: userId
+        },
+        include: {
+          item: true,
+          itemProposto: true
+        }
+      });
+       if (propostas.length === 0) {
+        return res.status(404).json({ message: 'Nenhuma proposta encontrada para este usuário.' });
+      }
+       return res.status(200).json(propostas);
+    }catch(error){
+      console.error('Erro ao buscar propostas:', error);
+      return res.status(500).json({ message: 'Erro ao buscar propostas do usuário.' });
     }
   }
 }

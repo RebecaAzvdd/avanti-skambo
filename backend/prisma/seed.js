@@ -1,48 +1,139 @@
-const { PrismaClient } = require('@prisma/client');
-const bcrypt = require('bcryptjs');
+import { PrismaClient } from '@prisma/client';
+import bcrypt from "bcrypt";
+import { v4 as uuidv4 } from 'uuid';
+
 const prisma = new PrismaClient();
 
 async function main() {
   console.log('Iniciando o seeding...');
 
+  // Senhas
   const senhaAliceHash = await bcrypt.hash('senha123', 10);
   const senhaBrunoHash = await bcrypt.hash('senha456', 10);
 
+  // Usuários
+  const userAliceId = uuidv4();
+  const userBrunoId = uuidv4();
+
   await prisma.user.createMany({
     data: [
-      { id: '11111111-1111-1111-1111-111111111111', nome: 'Alice Santos', email: 'alice@example.com', senha: senhaAliceHash },
-      { id: '22222222-2222-2222-2222-222222222222', nome: 'Bruno Lima', email: 'bruno@example.com', senha: senhaBrunoHash },
+      { id: userAliceId, nome: 'Alice Santos', email: 'alice@example.com', senha: senhaAliceHash },
+      { id: userBrunoId, nome: 'Bruno Lima', email: 'bruno@example.com', senha: senhaBrunoHash },
     ],
     skipDuplicates: true,
   });
   console.log('Usuários criados.');
 
+  // Itens
+  const itemIds = {
+    item1: uuidv4(),
+    item2: uuidv4(),
+    item3: uuidv4(),
+    item4: uuidv4(),
+    item5: uuidv4(),
+    item6: uuidv4(),
+    item7: uuidv4(),
+  };
+
   await prisma.item.createMany({
     data: [
-      { id: 'aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1', nome: 'Livro Harry Potter', descricao: 'Livro em ótimo estado', categoria: 'livros', userResponsavelId: '11111111-1111-1111-1111-111111111111' },
-      { id: 'aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2', nome: 'Fone JBL', descricao: 'Fone com fio, ótimo grave', categoria: 'eletrônicos', userResponsavelId: '11111111-1111-1111-1111-111111111111' },
-      { id: 'aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3', nome: 'Bola de Futebol', descricao: 'Nova, oficial', categoria: 'esportes', status: 'indisponível', userResponsavelId: '22222222-2222-2222-2222-222222222222' },
-      { id: 'aaaaaaa4-aaaa-aaaa-aaaa-aaaaaaaaaaa4', nome: 'Camisa Flamengo', descricao: 'Camisa original do time', categoria: 'roupas', userResponsavelId: '22222222-2222-2222-2222-222222222222' },
+      {
+        id: itemIds.item1,
+        nome: 'Livro: O Senhor dos Anéis',
+        descricao: 'Trilogia completa em capa dura.',
+        categoria: 'livros',
+        imagem: 'uploads/senhor-aneis.webp',
+        userResponsavelId: userAliceId,
+      },
+      {
+        id: itemIds.item2,
+        nome: 'Headset JBL Quantum',
+        descricao: 'Headset gamer com som 7.1, ótimo estado.',
+        categoria: 'eletrônicos',
+        imagem: 'uploads/headset-jbl.webp',
+        userResponsavelId: userAliceId,
+      },
+      {
+        id: itemIds.item3,
+        nome: 'Bola Adidas Copa',
+        descricao: 'Nova, oficial FIFA, usada 2x.',
+        categoria: 'esportes',
+        imagem: 'uploads/bola-adidas.webp',
+        status: 'indisponível',
+        userResponsavelId: userBrunoId,
+      },
+      {
+        id: itemIds.item4,
+        nome: 'Camisa Oficial do Brasil',
+        descricao: 'Camisa original da seleção 2022, tamanho G.',
+        categoria: 'roupas',
+        imagem: 'uploads/camisa-brasil.webp',
+        userResponsavelId: userBrunoId,
+      },
+      {
+        id: itemIds.item5,
+        nome: 'Mouse Logitech G203',
+        descricao: 'Mouse gamer RGB, pouco uso.',
+        categoria: 'eletrônicos',
+        imagem: 'uploads/mouse-logitech.webp',
+        userResponsavelId: userAliceId,
+      },
+      {
+        id: itemIds.item6,
+        nome: 'Livro: O Pequeno Príncipe',
+        descricao: 'Edição ilustrada, ótima condição.',
+        categoria: 'livros',
+        imagem: 'uploads/pequeno-principe.webp',
+        userResponsavelId: userBrunoId,
+      },
+      {
+        id: itemIds.item7,
+        nome: 'Tênis Nike Revolution',
+        descricao: 'Tamanho 42, usado 3 vezes.',
+        categoria: 'roupas',
+        imagem: 'uploads/tenis-nike.webp',
+        userResponsavelId: userAliceId,
+      },
     ],
     skipDuplicates: true,
   });
   console.log('Itens criados.');
 
+  // Propostas
   await prisma.proposta.createMany({
     data: [
-      { id: 'ppppppp1-pppp-pppp-pppp-ppppppppppp1', itemId: 'aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1', userPropostaId: '22222222-2222-2222-2222-222222222222', itemPropostoId: 'aaaaaaa4-aaaa-aaaa-aaaa-aaaaaaaaaaa4', status: 'em andamento' },
-      { id: 'ppppppp2-pppp-pppp-pppp-ppppppppppp2', itemId: 'aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2', userPropostaId: '22222222-2222-2222-2222-222222222222', itemPropostoId: 'aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3', status: 'recusada' },
-      { id: 'ppppppp3-pppp-pppp-pppp-ppppppppppp3', itemId: 'aaaaaaa4-aaaa-aaaa-aaaa-aaaaaaaaaaa4', userPropostaId: '11111111-1111-1111-1111-111111111111', itemPropostoId: 'aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2', status: 'aceita' },
+      {
+        id: uuidv4(),
+        itemId: itemIds.item1,
+        userPropostaId: userBrunoId,
+        itemPropostoId: itemIds.item4,
+        status: 'em andamento',
+      },
+      {
+        id: uuidv4(),
+        itemId: itemIds.item2,
+        userPropostaId: userBrunoId,
+        itemPropostoId: itemIds.item3,
+        status: 'recusada',
+      },
+      {
+        id: uuidv4(),
+        itemId: itemIds.item4,
+        userPropostaId: userAliceId,
+        itemPropostoId: itemIds.item2,
+        status: 'aceita',
+      },
     ],
     skipDuplicates: true,
   });
   console.log('Propostas criadas.');
-  console.log('Seeding concluído com sucesso!');
+
+  console.log('✅ Seeding concluído com sucesso!');
 }
 
 main()
   .catch((e) => {
-    console.error(e);
+    console.error('Erro durante o seeding:', e);
     process.exit(1);
   })
   .finally(async () => {

@@ -1,0 +1,17 @@
+.item-section-page {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.item-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.0rem;
+  max-width: 1600px; 
+  margin: 0 auto;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}

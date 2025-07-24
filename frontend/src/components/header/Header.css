@@ -1,0 +1,86 @@
+.header {
+  background-color: #111827;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.logo-skambo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-image {
+  height: 70px;
+  cursor: pointer;
+}
+
+.logo-name-skambo {
+  height: 18px;
+}
+
+.header-nav {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.nav-button {
+  background: transparent;
+  color: #a855f7;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.5s ease, color 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-button:hover {
+  background: linear-gradient(90deg, rgba(168, 85, 247, 1) 0%, rgba(138, 56, 201, 1) 50%, rgba(236, 72, 153, 1) 100%);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .main-header {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+  }
+
+  .logo-skambo {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .logo-image {
+    height: 42px;
+  }
+
+  .logo-name-skambo {
+    height: 15px;
+  }
+
+  .nav-button {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+}

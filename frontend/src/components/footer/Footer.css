@@ -1,0 +1,100 @@
+.main-footer {
+  background-color: #111827;
+  color: #ffff;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 110px;
+  font-weight: bold;
+  box-shadow: 0 -6px 15px rgba(0, 0, 0, 0.5); /* sombra no topo */
+}
+
+.logo-container {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  height: 120px;
+}
+
+.logo-name {
+  height: 34px;
+  margin-top: 8px;
+}
+
+.footer-sobre {
+  max-width: 600px;
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.footer-container {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+.footer-contato,
+.footer-redes-sociais,
+.footer-trabalhe-conosco {
+  flex: 1 1 0;
+  max-width: 30%;
+  text-align: center;
+}
+
+.footer-contato h2,
+.footer-redes-sociais h2,
+.footer-trabalhe-conosco h2,
+.footer-sobre h2 {
+  margin-bottom: 10px;
+}
+
+.footer-redes-sociais a,
+.footer-trabalhe-conosco a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-redes-sociais a:hover,
+.footer-trabalhe-conosco a:hover {
+  color: #a855f7;
+}
+
+.footer-text {
+  margin-top: 25px;
+  font-size: 14px;
+  color: #a855f7;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .footer-contato,
+  .footer-redes-sociais,
+  .footer-trabalhe-conosco {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .logo {
+    height: 80px;
+  }
+
+  .logo-name {
+    height: 24px;
+  }
+}
