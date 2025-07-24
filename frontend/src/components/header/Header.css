@@ -1,4 +1,4 @@
-.main-header {
+.header {
   background-color: #111827;
   color: #fff;
   padding: 15px 20px;
@@ -10,7 +10,7 @@
   position: relative;
 }
 
-.logo-container {
+.logo-skambo {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -22,12 +22,12 @@
   text-decoration: none;
 }
 
-.logo {
+.logo-image {
   height: 70px;
   cursor: pointer;
 }
 
-.logo-name {
+.logo-name-skambo {
   height: 18px;
 }
 
@@ -65,17 +65,17 @@
     padding: 10px 14px;
   }
 
-  .logo-container {
+  .logo-skambo {
     justify-content: center;
     flex-wrap: wrap;
     gap: 6px;
   }
 
-  .logo {
+  .logo-image {
     height: 42px;
   }
 
-  .logo-name {
+  .logo-name-skambo {
     height: 15px;
   }
 

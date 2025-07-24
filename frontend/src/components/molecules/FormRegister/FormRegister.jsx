@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./FormResgister.css";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { register } from "../../../services/authService";
+
 const FormRegister = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
@@ -10,6 +11,9 @@ const FormRegister = () => {
   const [email, setEmail] = useState("");
   const [nome, setNome] = useState("");
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -30,17 +34,15 @@ const FormRegister = () => {
 
     if (password !== confirmPassword) {
       alert("As senhas não são iguais, tente novamente!");
-      console.error("As senhas não são iguais");
       return;
     }
 
-    console.log("Cadastro efetuado com sucesso! confirmação de dados abaixo: ");
-    console.log({ email, password, confirmPassword });
-
     try {
       await register(nome, email, password);
-      alert("Cadastro realizado com sucesso!");
-      navigate("/login");
+      setSuccessMessage("Cadastrado com sucesso!");
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
     } catch (err) {
       setError(err.message);
     }
@@ -53,31 +55,31 @@ const FormRegister = () => {
   return (
     <div className="cadastro-container">
       <form className="cadastro-form" onSubmit={handleSubmit}>
-        <h1>Cadastrar</h1>
+        <h1>Cadastre-se</h1>
         <span>Rápido e grátis, vamos lá!</span>
 
+        <div className="container-input-name">
         <input
           name="nome"
-          label="nome"
           type="text"
           placeholder="nome"
           onChange={(e) => setNome(e.target.value)}
-        ></input>
+          />
         <input
           name="email"
-          label="Email"
           type="email"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
-        ></input>
+          />
+          </div>
+
         <div className="container-input">
           <input
             name="password"
             type={showPassword ? "text" : "password"}
-            label="Senha"
             placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
-          ></input>
+          />
           <button
             className="button-senha"
             type="button"
@@ -88,12 +90,11 @@ const FormRegister = () => {
         </div>
         <div className="container-input">
           <input
-            name="password"
+            name="confirmPassword"
             type={showPassword ? "text" : "password"}
-            label="Senha"
-            placeholder="password"
+            placeholder="confirmar senha"
             onChange={(e) => setConfirmPassword(e.target.value)}
-          ></input>
+          />
           <button
             className="button-senha"
             type="button"
@@ -102,7 +103,7 @@ const FormRegister = () => {
             {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
           </button>
         </div>
-
+        {successMessage && <div className="mensagem-sucesso">{successMessage}</div>}
         <button type="submit">Cadastrar</button>
         <span>
           Já possui uma conta? faça o <Link to="/login">Login</Link>
