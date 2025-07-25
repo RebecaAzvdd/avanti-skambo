@@ -7,6 +7,7 @@ import { getPropostaByUserId } from "../services/propostasService";
 import PropostasList from "../components/molecules/PropostasList/PropostasList";
 import EditProfile from "../components/molecules/EditProfile/EditProfile";
 import Footer from "../components/footer/Footer";
+import ItemList from "../components/molecules/item/ItemList";
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [propostas, setPropostas] = useState();
@@ -53,6 +54,7 @@ const Profile = () => {
         onLogout={handleLogout}
         onEditAccount={handleEditAccount}
       />
+      <ItemList/>
        {( user &&
         <PropostasList propostas={propostas} currentUserId={user.id}/>
        )}

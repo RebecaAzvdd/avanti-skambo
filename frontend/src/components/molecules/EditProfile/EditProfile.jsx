@@ -34,7 +34,7 @@ export default function EditProfile({ onClose, onSuccess }) {
   return (
     <div className="modal-overlay" role="dialog" aria-modal="true">
       <div className="modal-container">
-        <form className="modal-content" onSubmit={handleSubmit}>
+        <form className="modal-content-edit" onSubmit={handleSubmit}>
           <h2 className="modal-title">Editar perfil</h2>
           <div className="form-group">
             <label htmlFor="nome" className="form-label required">
